@@ -517,12 +517,14 @@ function renderProductComments(comments) {
         section.id = 'productCommentsSection';
         document.querySelector('.product-detail-info').appendChild(section);
     }
-    section.innerHTML = `<h3>Comments <button onclick=\"filterFriendsComments()\" style=\"margin-left:10px;\">See My Friends' Comments</button></h3>`;
+    let sectionString = '';
+    sectionString = `<h3>Comments <button onclick=\"filterFriendsComments()\" style=\"margin-left:10px;background: transparent;border: 0px;font-size: 16px;color: #6C6C6C;\">See My Friends' Comments</button></h3><div class="product-comments-feed">`;
     comments.forEach(c => {
-        section.innerHTML += `<div class=\"comment-item\" style=\"display:flex;align-items:flex-start;margin-bottom:12px;\"><div class=\"comment-avatar\" style=\"width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;\">${c.avatar}</div><div class=\"comment-content\" style=\"background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);\"><span style=\"font-weight:500;color:#333;\">${c.name}</span><span style=\"margin-left:8px;color:#888;font-size:13px;\">${c.handle}</span><div style=\"margin-top:4px;color:#444;font-size:15px;\">${c.text} <span style=\"font-size:18px;vertical-align:middle;\">${c.emoji}</span></div></div></div>`;
+        sectionString += `<div class=\"comment-item\" style=\"display:flex;align-items:flex-start;margin-bottom:12px;margin-top: 10px;\"><div class=\"comment-avatar\" style=\"width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;\">${c.avatar}</div><div class=\"comment-content\" style=\"background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);\"><span style=\"font-weight:500;color:#333;\">${c.name}</span><span style=\"margin-left:8px;color:#888;font-size:13px;\">${c.handle}</span><div style=\"margin-top:4px;color:#444;font-size:15px;\">${c.text} <span style=\"font-size:18px;vertical-align:middle;\">${c.emoji}</span></div></div></div>`;
     });
     // Add comment box
-    section.innerHTML += `<div style=\"display:flex;align-items:center;gap:8px;margin-top:10px;\"><input type=\"text\" id=\"addProductCommentInput\" class=\"comment-input\" placeholder=\"Add a comment...\" style=\"flex:1;\"><button class=\"btn\" onclick=\"addProductComment()\">Post</button></div>`;
+    sectionString += `</div><div style=\"display:flex;align-items:center;gap:8px;margin-top:10px;\"><input type=\"text\" id=\"addProductCommentInput\" class=\"comment-input\" placeholder=\"Add a comment...\" style=\"flex:1;\"><button class=\"btn\" onclick=\"addProductComment()\">Post</button></div>`;
+    section.innerHTML = sectionString;
 }
 
 function addProductComment() {
