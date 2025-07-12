@@ -234,19 +234,28 @@ body {
 .friend-info {
     padding: 15px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .friend-name {
     font-weight: bold;
     margin-bottom: 2px;
+    color: #fff;
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Anybody', sans-serif;
 }
 
 .friend-username {
     font-size: 0.85em;
-    color: #6C6C6C;
+    color: #fff;
+    text-align: left;
 }
 
 /* Profile */
@@ -588,12 +597,12 @@ body {
 
 .create-post-btn {
     width: 100%;
-    padding: 15px;
+    padding: 10px 15px;
     background: #365261;
     color: white;
     border: none;
     border-radius: 2px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     margin-bottom: 20px;
     display: flex;
@@ -601,6 +610,7 @@ body {
     justify-content: center;
     gap: 10px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Darker Grotesque', sans-serif;
 }
 
 .create-post-btn:hover {
@@ -765,14 +775,14 @@ body {
 }
 
 .post-caption {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.4;
     margin-bottom: 10px;
     color: #2C2C2C;
 }
 
 .post-fit {
-    font-size: 14px;
+    font-size: 18px;
     color: #6C6C6C;
 }
 
@@ -816,19 +826,20 @@ body {
 }
 
 .event-info {
-    padding: 15px;
+    padding: 20px;
 }
 
 .event-title {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    font-family: 'Anybody', sans-serif;
 }
 
 .event-description {
-    font-size: 14px;
+    font-size: 18px;
     color: #6C6C6C;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 
 /* Event Participants */
@@ -1184,8 +1195,14 @@ body {
     color: #6C6C6C;
 }
 
+#edit-profile h3 {
+    font-size: 26px;
+    margin-bottom: 20px !important;
+}
+
 .lists-screen-header .back-btn {
     padding-left: 0px;
+    padding-top: 0px;
 }
 
 .back-btn:hover {
@@ -1468,10 +1485,11 @@ body {
 
 .suggestion-header {
     margin-bottom: 15px;
+    margin-top: 40px;
 }
 
 .suggestion-header h3 {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 600;
     margin: 0;
     color: #365261;
@@ -1591,10 +1609,6 @@ body {
     color: #365261;
 }
 
-@media only screen and (min-width: 429px) and (max-width: 926px) {
-    /* iPhone 13/14/15 Pro Max sizes */
-    .menu-item {
-        width: 80vw;
-        max-width: 360px;
-    }
+.lists-section {
+    width: 100%;
 }

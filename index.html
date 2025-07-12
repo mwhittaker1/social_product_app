@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <title>Nuuly - Social Fashion Rental</title>
     <!-- For GitHub Pages compatibility: ensure all asset paths are relative -->
     <base href="./">
@@ -251,36 +252,29 @@
             <div class="friends-list">
                 <div class="friend-card" onclick="showFriendProfile('Jenny')" style="background-image: url('images/products/747963977-m1c.webp'); background-size: cover; background-position: center;">
                     <div class="friend-info">
-                        <div class="friend-avatar">J</div>
                         <div class="friend-name">Jenny</div>
                         <div class="friend-username">@jennynotjenis</div>
                     </div>
                 </div>
                 <div class="friend-card" onclick="showFriendProfile('Maya')" style="background-image: url('images/products/747964048-m6c.webp'); background-size: cover; background-position: center;">
                     <div class="friend-info">
-                        <div class="friend-avatar">M</div>
                         <div class="friend-name">Maya</div>
                         <div class="friend-username">@therealmaya</div>
                     </div>
                 </div>
                 <div class="friend-card" onclick="showFriendProfile('Amaya')" style="background-image: url('images/products/747964063-m8b.webp'); background-size: cover; background-position: center;">
                     <div class="friend-info">
-                        <div class="friend-avatar">A</div>
                         <div class="friend-name">Amaya</div>
                         <div class="friend-username">@amaya23</div>
                     </div>
                 </div>
                 <div class="friend-card" onclick="showFriendProfile('Nova')" style="background-image: url('images/products/757627703-m1b.webp'); background-size: cover; background-position: center;">
                     <div class="friend-info">
-                        <div class="friend-avatar">N</div>
                         <div class="friend-name">Nova</div>
                         <div class="friend-username">@novanova99</div>
                     </div>
                 </div>
             </div>
-            
-            <h2>Reviews Make the Nuuly World Go 'Round</h2>
-            <p style="text-align: center; color: #6C6C6C; margin-bottom: 20px;">Add yours to the ecosystem</p>
         </div>
     </div>
     
@@ -555,10 +549,10 @@ function toggleHanger(btn, event) {
             </div>
             
             <!-- User Suggestion -->
+            <div class="suggestion-header">
+                <h3>Style Match Suggestions</h3>
+            </div>
             <div class="feed-post user-suggestion">
-                <div class="suggestion-header">
-                    <h3>Style Match Suggestions</h3>
-                </div>
                 <div class="suggestion-content">
                     <div class="suggested-user">
                         <div class="suggested-user-avatar">T</div>
@@ -587,7 +581,7 @@ function toggleHanger(btn, event) {
             <h2 style="text-align: center; margin-bottom: 20px;">Your Events</h2>
             <div class="event-card" onclick="showListsScreenForEvent('Summer of Fun', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/747963950-m1a.webp'); background-size: cover; background-position: center;">
-                    <div class="event-image-overlay">☀️ Summer of Fun</div>
+                    <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
                     <div class="event-title">Summer of Fun</div>
@@ -598,7 +592,7 @@ function toggleHanger(btn, event) {
             </div>
             <div class="event-card" onclick="showListsScreenForEvent('Best Bathing Suits for Wide Hips', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/747964005-m4a.webp'); background-size: cover; background-position: center;">
-                    <div class="event-image-overlay">👙 Best Bathing Suits</div>
+                    <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
                     <div class="event-title">Best Bathing Suits for Wide Hips</div>
@@ -614,7 +608,7 @@ function toggleHanger(btn, event) {
             </div>
             <div class="event-card" onclick="showListsScreenForEvent('Wedding Season Essentials', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/4130929940110_009_b2.webp'); background-size: cover; background-position: center;">
-                    <div class="event-image-overlay">💍 Wedding Season</div>
+                    <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
                     <div class="event-title">Wedding Season Essentials</div>
@@ -823,7 +817,7 @@ function toggleHanger(btn, event) {
         background: #fff;
         color: #3E545B;
         border: 2px solid #3E545B;
-        border-radius: 6px;
+        border-radius: 2px;
         padding: 12px 24px;
         font-size: 16px;
         cursor: pointer;
@@ -919,7 +913,7 @@ function toggleHanger(btn, event) {
     </div>
     
     <!-- Fullscreen Image Overlay -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay">
+    <div class="fullscreen-overlay" id="fullscreenOverlay" style="flex-direction: column;">
         <div class="fullscreen-header">
             <div>Photo</div>
             <div class="close-fullscreen" onclick="closeFullscreen()">✕</div>
