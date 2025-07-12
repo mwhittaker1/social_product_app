@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuuly - Social Fashion Rental</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon" onclick="toggleMenu()">Browse</div>
+            <div class="logo">nuuly</div>
+        </div>
+        <div class="header-right">
+            <div class="header-icon profile-icon" onclick="goToProfile()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#333"/>
+                </svg>
+            </div>
+            <div class="header-icon" onclick="showScreen('feed')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#333"/>
+                </svg>
+            </div>
+            <div class="header-icon notification-icon" onclick="toggleNotifications()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.36 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.63 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z" fill="#333"/>
+                </svg>
+                <span class="notification-badge">5</span>
+            </div>
+            <div class="header-icon" onclick="showScreen('main-menu')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" fill="#333"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notifications Dropdown -->
+    <div class="notifications-dropdown" id="notificationsDropdown">
+        <div class="notification-item notification-friend">
+            <span class="notification-icon">👥</span>
+            Jenny accepted your friend invite!
+            <span class="notification-dismiss">×</span>
+        </div>
+        <div class="notification-item notification-list">
+            <span class="notification-icon">📋</span>
+            Influencer Tory added 3 items to her list 'July please don't melt'
+            <span class="notification-dismiss">×</span>
+        </div>
+        <div class="notification-item notification-feature">
+            <span class="notification-icon">✨</span>
+            Try our blended closet feature and see who has the closest style match to you!
+            <span class="notification-dismiss">×</span>
+        </div>
+        <div class="notification-item notification-review">
+            <span class="notification-icon">📝</span>
+            Maya just posted a new outfit review
+            <span class="notification-dismiss">×</span>
+        </div>
+        <div class="notification-item notification-reminder">
+            <span class="notification-icon">⏰</span>
+            Your rental is due back in 3 days
+            <span class="notification-dismiss">×</span>
+        </div>
+    </div>
+    <style>
+    .notifications-dropdown {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        padding: 12px 0;
+        min-width: 320px;
+        position: absolute;
+        right: 24px;
+        top: 60px;
+        z-index: 100;
+    }
+    .notification-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 18px 10px 12px;
+        font-size: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        position: relative;
+        min-height: 40px;
+        gap: 8px;
+    }
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+    .notification-icon {
+        font-size: 18px;
+        margin-right: 8px;
+        flex-shrink: 0;
+        opacity: 0.8;
+    }
+    .notification-dismiss {
+        margin-left: auto;
+        color: #bbb;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        border-radius: 50%;
+        transition: background 0.15s;
+        line-height: 1;
+    }
+    .notification-dismiss:hover {
+        background: #f0f0f0;
+        color: #888;
+    }
+    .notification-friend {
+        background: #eafaf1;
+        color: #1a7f4f;
+    }
+    .notification-list {
+        background: #f0f7ff;
+        color: #2563eb;
+    }
+    .notification-feature {
+        background: #fdf6e3;
+        color: #b58900;
+    }
+    .notification-review {
+        background: #f6f0fa;
+        color: #7c3aed;
+    }
+    .notification-reminder {
+        background: #fff6f6;
+        color: #d14343;
+    }
+    </style>
+    
+    <!-- Main Menu Screen / User Profile Screen -->
+    <div class="screen active" id="main-menu">
+        <!-- User Profile Section -->
+        <div class="profile-header">
+            <div class="profile-avatar user-profile-avatar" onclick="goToEditProfile()">
+                <img src="images/muck-ups/rach_profile.png" alt="Rachel" class="profile-image-centered-fixed">
+            </div>
+            <h1 class="profile-name">Rachel</h1>
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">lists</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">followers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">27</span>
+                    <span class="stat-label">following</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">events</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="btn" onclick="goToEditProfile()">Edit Profile</button>
+                <button class="btn share-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.34C15.11 18.55 15.08 18.77 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#333"/>
+                    </svg>
+                    Share
+                </button>
+                <button class="btn friend-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C12.79 4 11 5.79 11 8C11 10.21 12.79 12 15 12ZM15 6C16.1 6 17 6.9 17 8C17 9.1 16.1 10 15 10C13.9 10 13 9.1 13 8C13 6.9 13.9 6 15 6ZM15 14C12.33 14 7 15.34 7 18V20H23V18C23 15.34 17.67 14 15 14ZM9 18C9.22 17.28 12.31 16 15 16C17.7 16 20.8 17.29 21 18H9ZM9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4ZM9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10ZM9 14C6.33 14 1 15.34 1 18V20H9V18C9 16.45 10.81 15.06 13.15 14.32C11.98 14.09 10.59 14 9 14Z" fill="#333"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lists Section -->
+        <div class="lists-section">
+            <div class="lists-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                <h3 style="margin: 0;">Your Followed Lists (2)</h3>
+                <div>
+                    <span class="create-list">Create List</span>
+                    <span class="view-all">View All</span>
+                </div>
+            </div>
+            
+            <div class="lists-grid">
+                <div class="list-card" onclick="showListScreen('July')" style="cursor:pointer;">
+                    <div class="list-preview">
+                        <div class="list-preview-item">
+                            <img src="images/products/4130084320119_011_b2.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130646420009_256_b.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130652010127_089_b2.webp" alt="Product">
+                        </div>
+                    </div>
+                    <div class="list-info">
+                        <div class="list-title">July</div>
+                        <div class="list-count">8 items</div>
+                    </div>
+                </div>
+                <div class="list-card" onclick="showListScreen('Summer Vibes')" style="cursor:pointer;">
+                    <div class="list-preview">
+                        <div class="list-preview-item">
+                            <img src="images/products/4130916210153_066_b2.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130652010127_089_b2.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130084320119_011_b2.webp" alt="Product">
+                        </div>
+                    </div>
+                    <div class="list-info">
+                        <div class="list-title">Summer Vibes</div>
+                        <div class="list-count">6 items</div>
+                    </div>
+                </div>
+            </div>
+    <style>
+    /* Removed list-rating-stars and label styles as requested */
+    </style>
+        </div>
+
+        <!-- Connect & Explore Section -->
+        <h3 class="section-title">Connect & Explore</h3>
+        <div class="menu-item" onclick="showScreen('friends-closet')">
+            <div class="menu-item-bg" style="background-image: url('images/muck-ups/friend_closet_button.png');"></div>
+            <div class="menu-item-overlay"></div>
+            <h2>Friend's Closets</h2>
+        </div>
+        <div class="menu-item" onclick="showScreen('feed')">
+            <div class="menu-item-bg" style="background-image: url('images/muck-ups/explore_feed_button.png');"></div>
+            <div class="menu-item-overlay"></div>
+            <h2>Your Feed</h2>
+        </div>
+        <div class="menu-item" onclick="showScreen('events')">
+            <div class="menu-item-bg" style="background-image: url('images/products/747964048-m6c.webp');"></div>
+            <div class="menu-item-overlay"></div>
+            <h2>Your Events</h2>
+        </div>
+    </div>
+    
+    <!-- Notifications Dropdown -->
+    <div class="notifications-dropdown" id="notificationsDropdown">
+        <div class="notification-item">Jenny accepted your friend invite!</div>
+        <div class="notification-item">Influencer Tory added 3 items to her list 'July please don't melt'</div>
+        <div class="notification-item">Try our blended closet feature and see who has the closest style match to you!</div>
+        <div class="notification-item">Maya just posted a new outfit review</div>
+        <div class="notification-item">Your rental is due back in 3 days</div>
+    </div>
+    
+    <!-- Friends Closet Screen -->
+    <div class="screen" id="friends-closet">
+        <div class="friends-grid">
+            <h2>Your Friend's Closets</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">See the styles your best friends already love</p>
+            
+            <div class="friends-list">
+                <div class="friend-card" onclick="showFriendProfile('Jenny')" style="background-image: url('images/products/747963977-m1c.webp'); background-size: cover; background-position: center;">
+                    <div class="friend-info">
+                        <div class="friend-avatar">J</div>
+                        <div class="friend-name">Jenny</div>
+                        <div class="friend-username">@jennynotjenis</div>
+                    </div>
+                </div>
+                <div class="friend-card" onclick="showFriendProfile('Maya')" style="background-image: url('images/products/747964048-m6c.webp'); background-size: cover; background-position: center;">
+                    <div class="friend-info">
+                        <div class="friend-avatar">M</div>
+                        <div class="friend-name">Maya</div>
+                        <div class="friend-username">@therealmaya</div>
+                    </div>
+                </div>
+                <div class="friend-card" onclick="showFriendProfile('Amaya')" style="background-image: url('images/products/747964063-m8b.webp'); background-size: cover; background-position: center;">
+                    <div class="friend-info">
+                        <div class="friend-avatar">A</div>
+                        <div class="friend-name">Amaya</div>
+                        <div class="friend-username">@amaya23</div>
+                    </div>
+                </div>
+                <div class="friend-card" onclick="showFriendProfile('Nova')" style="background-image: url('images/products/757627703-m1b.webp'); background-size: cover; background-position: center;">
+                    <div class="friend-info">
+                        <div class="friend-avatar">N</div>
+                        <div class="friend-name">Nova</div>
+                        <div class="friend-username">@novanova99</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Reviews Make the Nuuly World Go 'Round</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">Add yours to the ecosystem</p>
+        </div>
+    </div>
+    
+    <!-- Friend Profile Screen -->
+    <div class="screen" id="friend-profile">
+        <div class="profile-header">
+            <div class="profile-avatar">J</div>
+            <h1 class="profile-name">Jenny</h1>
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">lists</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">followers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">27</span>
+                    <span class="stat-label">following</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="btn">Edit Profile</button>
+                <button class="btn">Share</button>
+                <button class="btn btn-primary">👤</button>
+            </div>
+        </div>
+        
+        <div class="lists-section">
+            <div class="lists-header">
+                <h3>Lists (2)</h3>
+                <div>
+                    <span class="create-list">Create List</span>
+                    <span class="view-all">View All</span>
+                </div>
+            </div>
+            
+            <div class="lists-grid">
+                <div class="list-card" onclick="showListScreen('July')" style="cursor:pointer;">
+                    <div class="list-preview">
+                        <div class="list-preview-item">
+                            <img src="images/products/4130084320119_011_b2.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130646420009_256_b.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/4130652010127_089_b2.webp" alt="Product">
+                        </div>
+                    </div>
+                    <div class="list-info">
+                        <div class="list-title">July</div>
+                        <div class="list-count">8 items</div>
+                    </div>
+                </div>
+                <div class="list-card" onclick="showListScreen('June')" style="cursor:pointer;">
+                    <div class="list-preview">
+                        <div class="list-preview-item">
+                            <img src="images/products/747964005-m4a.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/747964025-m4c.webp" alt="Product">
+                        </div>
+                        <div class="list-preview-item">
+                            <img src="images/products/757627703-m1b.webp" alt="Product">
+                        </div>
+                    </div>
+                    <div class="list-info">
+                        <div class="list-title">June</div>
+                        <div class="list-count">4 items</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 20px; color: #666;">
+            <h3>Filter + Sort (2)</h3>
+        </div>
+        
+        <div style="text-align: center; padding: 10px; color: #666;">
+            44 results
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/747963950-m1a.webp" alt="Ari Neck Scarf Dress" class="product-img">
+                    <button class="add-to-closet hanger-btn" onclick="toggleHanger(this, event)" aria-label="Add to Closet">
+                        <svg class="hanger-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="14" fill="#3E545B"/>
+                            <path d="M14 8c1.1 0 2 .9 2 2h2c0-2.2-1.8-4-4-4s-4 1.8-4 4c0 1.7 1.1 3.1 2.7 3.7l.3.1V16h2v-2.2l-.3-.1C12.1 13.1 11 11.7 11 10c0-1.1.9-2 2-2zm-5 10c0-2.2 3.6-4 5-4s5 1.8 5 4v1H9v-1z" fill="#fff"/>
+                        </svg>
+                    </button>
+    <style>
+    .hanger-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: none;
+    }
+    .hanger-icon {
+        transition: filter 0.2s;
+    }
+    .hanger-toggled .hanger-icon {
+        filter: invert(1);
+    }
+    </style>
+</body>
+<script>
+function toggleHanger(btn, event) {
+    event.stopPropagation();
+    btn.classList.toggle('hanger-toggled');
+}
+</script>
+                    <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Ari Neck Scarf Dress</div>
+                    <div class="product-brand">Boobob</div>
+                </div>
+            </div>
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
+                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Barrett Midi Dress</div>
+                    <div class="product-brand">Ronny Kobo</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Closet Screen -->
+    <div class="screen" id="closet">
+        <div class="back-btn" onclick="goBack()">
+            ← Back
+        </div>
+        
+        <div class="closet-header">
+            <div class="closet-title">COLLECTION</div>
+            <h1 class="closet-name">Jenny's Closet</h1>
+        </div>
+        
+        <div class="filter-sort">
+            <span>⚙️ Filter + Sort (2)</span>
+        </div>
+        
+        <div style="text-align: center; padding: 10px; color: #666;">
+            44 results
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-img">
+                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-box" onclick="addToBox(event)">�</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Brooke Halter Top</div>
+                    <div class="product-brand">Free People</div>
+                </div>
+            </div>
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
+                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-box" onclick="addToBox(event)">�</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Barrett Midi Dress</div>
+                    <div class="product-brand">Ronny Kobo</div>
+                </div>
+            </div>
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/4130652010127_089_b2.webp" alt="Strappy Dress" class="product-img">
+                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-box" onclick="addToBox(event)">�</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Strappy Dress</div>
+                    <div class="product-brand">PHX</div>
+                </div>
+            </div>
+            <div class="product-card" onclick="showProductDetail()">
+                <div class="product-image">
+                    <img src="images/products/4130916210153_066_b2.webp" alt="Polka Dot Dress" class="product-img">
+                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-box" onclick="addToBox(event)">�</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Polka Dot Dress</div>
+                    <div class="product-brand">B14 Designs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feed Screen -->
+    <div class="screen" id="feed">
+        <div class="feed-container">
+            <button class="create-post-btn">
+                + Create Post
+            </button>
+            
+            <div class="feed-post">
+                <div class="post-header">
+                    <div class="post-avatar">J</div>
+                    <div class="post-username">@jennynotjenis</div>
+                </div>
+                <div class="post-image-container" onclick="showFullscreen(event)">
+                    <img src="images/products/747963950-m1a.webp" alt="Fashion post" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-rating">
+                        <span class="star" data-rating="1" onclick="rateItem(this, 1)">☆</span>
+                        <span class="star" data-rating="2" onclick="rateItem(this, 2)">☆</span>
+                        <span class="star" data-rating="3" onclick="rateItem(this, 3)">☆</span>
+                        <span class="star" data-rating="4" onclick="rateItem(this, 4)">☆</span>
+                        <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
+                    </div>
+                    <div class="post-caption">
+                        Loved this top for my dinner date tonight!
+                    </div>
+                    <div class="post-fit">
+                        True to size: ●───────
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product List Montage -->
+            <div class="feed-post list-montage">
+                <div class="post-header">
+                    <div class="post-avatar">R</div>
+                    <div class="post-username">@rachel_green</div>
+                </div>
+                <div class="list-title-header">
+                    <h3>July</h3>
+                    <span>8 items</span>
+                </div>
+                <div class="product-montage">
+                    <div class="montage-item" onclick="showProductDetail()">
+                        <img src="images/products/4130084320119_011_b2.webp" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail()">
+                        <img src="images/products/4130646420009_256_b.webp" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail()">
+                        <img src="images/products/4130652010127_089_b2.webp" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail()">
+                        <img src="images/products/747963950-m1a.webp" alt="Product">
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-caption">
+                        My summer favorites collection! Can't wait to wear these pieces.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Suggestion -->
+            <div class="feed-post user-suggestion">
+                <div class="suggestion-header">
+                    <h3>Style Match Suggestions</h3>
+                </div>
+                <div class="suggestion-content">
+                    <div class="suggested-user">
+                        <div class="suggested-user-avatar">T</div>
+                        <div class="suggested-user-info">
+                            <div class="suggested-user-name">Tory Bell</div>
+                            <div class="suggested-user-match">98% style match</div>
+                        </div>
+                        <button class="follow-btn">Follow</button>
+                    </div>
+                    <div class="suggested-user">
+                        <div class="suggested-user-avatar">A</div>
+                        <div class="suggested-user-info">
+                            <div class="suggested-user-name">Allison Janes</div>
+                            <div class="suggested-user-match">92% style match</div>
+                        </div>
+                        <button class="follow-btn">Follow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Events Screen -->
+    <div class="screen" id="events">
+        <div class="events-container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Your Events</h2>
+            <div class="event-card" onclick="showListsScreenForEvent('Summer of Fun', ['A', 'M', 'K'])">
+                <div class="event-image" style="background-image: url('images/products/747963950-m1a.webp'); background-size: cover; background-position: center;">
+                    <div class="event-image-overlay">☀️ Summer of Fun</div>
+                </div>
+                <div class="event-info">
+                    <div class="event-title">Summer of Fun</div>
+                    <div class="event-description">
+                        Discover the perfect pieces for your summer adventures. From beach days to rooftop parties, we've got you covered.
+                    </div>
+                </div>
+            </div>
+            <div class="event-card" onclick="showListsScreenForEvent('Best Bathing Suits for Wide Hips', ['A', 'M', 'K'])">
+                <div class="event-image" style="background-image: url('images/products/747964005-m4a.webp'); background-size: cover; background-position: center;">
+                    <div class="event-image-overlay">👙 Best Bathing Suits</div>
+                </div>
+                <div class="event-info">
+                    <div class="event-title">Best Bathing Suits for Wide Hips</div>
+                    <div class="event-description">
+                        Find your perfect fit with our curated selection of flattering swimwear designed to celebrate your curves.
+                    </div>
+                    <div class="event-participants">
+                        <div class="event-owner">A</div>
+                        <div class="event-participant">M</div>
+                        <div class="event-participant">K</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card" onclick="showListsScreenForEvent('Wedding Season Essentials', ['A', 'M', 'K'])">
+                <div class="event-image" style="background-image: url('images/products/4130929940110_009_b2.webp'); background-size: cover; background-position: center;">
+                    <div class="event-image-overlay">💍 Wedding Season</div>
+                </div>
+                <div class="event-info">
+                    <div class="event-title">Wedding Season Essentials</div>
+                    <div class="event-description">
+                        From garden parties to black-tie affairs, find the perfect outfit for every wedding on your calendar.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lists Screen -->
+    <div class="screen" id="lists-screen">
+        <div class="lists-screen-header">
+            <div class="back-btn" onclick="goBack()">← Back</div>
+            <h2 id="listsScreenTitle">Event Products</h2>
+            <div id="listsScreenParticipants" style="display:none; margin-bottom: 10px;">
+                <div class="participants-row" style="display: flex; gap: 10px; align-items: center;"></div>
+            </div>
+            <div class="list-rating-row" style="display: flex; align-items: center; gap: 12px; margin-top: 10px;">
+                <span class="list-rating-label" style="font-size: 15px; color: #888;">Your rating for this list:</span>
+                <div class="list-rating-stars" id="listsScreenRating">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star">★</span>
+                </div>
+            </div>
+        </div>
+    <style>
+    .list-rating-row {
+        margin-bottom: 8px;
+    }
+    .list-rating-stars {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-left: 8px;
+    }
+    .list-rating-stars .star {
+        font-size: 18px;
+        color: #e0e0e0;
+        cursor: pointer;
+        transition: color 0.2s;
+        user-select: none;
+    }
+    .list-rating-stars .star.filled {
+        color: #FFD600;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .list-rating-label {
+        font-weight: 400;
+    }
+    </style>
+        <div class="lists-screen-container">
+            <div class="products-grid">
+                <!-- Example products, can be dynamically generated -->
+                <div class="product-card" onclick="showProductDetail()">
+                    <div class="product-image">
+                        <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Brooke Halter Top</div>
+                        <div class="product-brand">Free People</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="showProductDetail()">
+                    <div class="product-image">
+                        <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Barrett Midi Dress</div>
+                        <div class="product-brand">Ronny Kobo</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="showProductDetail()">
+                    <div class="product-image">
+                        <img src="images/products/4130652010127_089_b2.webp" alt="Strappy Dress" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Strappy Dress</div>
+                        <div class="product-brand">PHX</div>
+                    </div>
+                </div>
+            </div>
+            <div id="listsCommentsSection" style="display:none; margin-top: 30px;">
+                <h3>Comments</h3>
+                <div class="comments-box" style="border-radius: 12px; border: 1px solid #e0e0e0; background: #fafafa; padding: 18px 12px; margin-bottom: 10px;">
+                    <div id="listsCommentsFeed">
+                        <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+                            <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">J</div>
+                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                                <span style="font-weight:500; color:#333;">Jenny</span>
+                                <span style="margin-left:8px; color:#888; font-size:13px;">@jennynotjenis</span>
+                                <div style="margin-top:4px; color:#444; font-size:15px;">Can't wait for the wedding! <span style="font-size:18px;vertical-align:middle;">🎉</span></div>
+                            </div>
+                        </div>
+                        <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+                            <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">M</div>
+                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                                <span style="font-weight:500; color:#333;">Maya</span>
+                                <span style="margin-left:8px; color:#888; font-size:13px;">@therealmaya</span>
+                                <div style="margin-top:4px; color:#444; font-size:15px;">The Sheel Sleeveless was running large on me, FYI! <span style="font-size:18px;vertical-align:middle;">👗</span></div>
+                            </div>
+                        </div>
+                        <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+                            <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">A</div>
+                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                                <span style="font-weight:500; color:#333;">Amaya</span>
+                                <span style="margin-left:8px; color:#888; font-size:13px;">@amaya23</span>
+                                <div style="margin-top:4px; color:#444; font-size:15px;">Love the color palette in this list! <span style="font-size:18px;vertical-align:middle;">😍</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-comment-section" style="display:flex;align-items:center;gap:8px;">
+                    <input type="text" id="addListCommentInput" class="comment-input" placeholder="Add a comment..." style="flex:1;">
+                    <button class="btn" onclick="addListComment()">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Detail Screen -->
+    <div class="screen" id="product-detail">
+        <div class="back-btn" onclick="goBack()">
+            ← Back
+        </div>
+        
+        <div class="product-detail">
+            <div class="product-detail-image">
+                <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-detail-img">
+            </div>
+            
+            <div class="product-detail-info">
+                <h1 class="product-detail-name">Brooke Halter Top</h1>
+                <div class="product-detail-brand">Free People</div>
+                <div class="product-detail-price">Rental: $25 | Retail: $128</div>
+                
+                <div class="product-detail-description">
+                    A gorgeous halter top featuring delicate cutout details and a flowy silhouette. Perfect for summer festivals or date nights. Made from sustainable materials with a comfortable fit that flatters all body types.
+                </div>
+                
+                <div class="size-selector">
+                    <h3>Sizing:</h3>
+                    <div class="sizing-bubbles-container" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px;">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="font-size: 12px; margin-bottom: 4px;">Runs<br>Very Small</span>
+                            <div class="sizing-bubble" data-size="1"></div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="font-size: 12px; margin-bottom: 4px;">Runs<br>Small</span>
+                            <div class="sizing-bubble" data-size="2"></div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="font-size: 12px; margin-bottom: 4px;">True<br>to Size</span>
+                            <div class="sizing-bubble" data-size="3"></div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="font-size: 12px; margin-bottom: 4px;">Runs<br>Large</span>
+                            <div class="sizing-bubble" data-size="4"></div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="font-size: 12px; margin-bottom: 4px;">Runs<br>Very Large</span>
+                            <div class="sizing-bubble" data-size="5"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="add-to-box-btn">Add to Box</button>
+                <button class="add-to-list-btn">Add to List or Event</button>
+    <style>
+    .sizing-bubble {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        margin: 0 2px;
+        border: 2px solid #bbb;
+        cursor: pointer;
+        transition: background 0.2s, border 0.2s;
+    }
+    .sizing-bubble.selected {
+        background: #3E545B;
+        border: 2px solid #3E545B;
+    }
+    .add-to-box-btn {
+        background: #3E545B;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        font-size: 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        margin-top: 16px;
+    }
+    .add-to-list-btn {
+        background: #fff;
+        color: #3E545B;
+        border: 2px solid #3E545B;
+        border-radius: 6px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 16px;
+    }
+    </style>
+<script>
+// Sizing bubble selection logic
+document.addEventListener('DOMContentLoaded', function() {
+    var bubbles = document.querySelectorAll('.sizing-bubble');
+    bubbles.forEach(function(bubble) {
+        bubble.addEventListener('click', function() {
+            bubbles.forEach(function(b) { b.classList.remove('selected'); });
+            bubble.classList.add('selected');
+        });
+    });
+});
+</script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Profile Screen -->
+    <div class="screen" id="edit-profile">
+        <div class="back-btn" onclick="goBack()">
+            ← Back
+        </div>
+        
+        <div class="profile-header">
+            <h2 style="font-size: 32px; margin-bottom: 30px;">Edit Profile</h2>
+            
+            <div class="profile-avatar user-profile-avatar">
+                👤
+                <div class="edit-avatar-icon">📷</div>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                    <div class="input-group">
+                        <label>Name</label>
+                        <input type="text" value="Rachel Green" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" value="rachel_green" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" value="rachel.green@gmail.com" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Mobile</label>
+                        <input type="tel" value="+1 (678) 999-8212" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Bio</label>
+                        <textarea class="profile-input" rows="3">Fashion industry professional with a passion for sustainable style. Love finding unique pieces that express personality and make a statement!</textarea>
+                    </div>
+                    
+                    <div class="toggle-group">
+                        <span>Private closet</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <h3 style="margin-bottom: 10px;">Shipping Address</h3>
+                <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                    <div class="input-group">
+                        <label>Street Address</label>
+                        <input type="text" value="1111 Cherry Blossom Dr" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>City</label>
+                        <input type="text" value="Philadelphia" class="profile-input">
+                    </div>
+                    
+                    <div class="input-group-row">
+                        <div class="input-group">
+                            <label>State</label>
+                            <input type="text" value="PA" class="profile-input">
+                        </div>
+                        <div class="input-group">
+                            <label>Zip</label>
+                            <input type="text" value="19019" class="profile-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+                <button class="btn" onclick="goBack()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fullscreen Image Overlay -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <div class="fullscreen-header">
+            <div>Photo</div>
+            <div class="close-fullscreen" onclick="closeFullscreen()">✕</div>
+        </div>
+        <div class="fullscreen-image-container">
+            <img id="fullscreen-image" src="" alt="Fashion item" class="fullscreen-image">
+        </div>
+        <div class="fullscreen-actions">
+            <div class="post-rating" style="text-align: center; margin-bottom: 10px;">
+                <div style="margin-bottom: 10px;">Your friends rated this a 4.5</div>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+            </div>
+            <div class="comment-section">
+                <input type="text" class="comment-input" placeholder="Add a comment...">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Invite Modal -->
+    <div class="modal-overlay" id="inviteModal">
+        <div class="modal">
+            <div class="modal-icon">💐</div>
+            <h2>Accept your invite to shared closet "Wedding '26"</h2>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" onclick="acceptInvite()">Accept Invite</button>
+                <button class="modal-btn modal-btn-secondary" onclick="declineInvite()">Decline</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

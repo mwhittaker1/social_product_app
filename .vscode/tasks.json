@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Open with Live Server",
+			"type": "shell",
+			"command": "echo",
+			"args": [
+				"To preview the app, install the Live Server extension and click 'Go Live' in the status bar"
+			],
+			"group": "build",
+			"problemMatcher": []
+		}
+	]
+}
