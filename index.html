@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuuly - Social Fashion Rental</title>
+    <!-- For GitHub Pages compatibility: ensure all asset paths are relative -->
+    <base href="./">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -135,6 +137,8 @@
     
     <!-- Main Menu Screen / User Profile Screen -->
     <div class="screen active" id="main-menu">
+        <!-- Debug footer -->
+        <div class="debug-footer">For debugging, screen is: main-menu</div>
         <!-- User Profile Section -->
         <div class="profile-header">
             <div class="profile-avatar user-profile-avatar" onclick="goToEditProfile()">
@@ -246,16 +250,11 @@
     </div>
     
     <!-- Notifications Dropdown -->
-    <div class="notifications-dropdown" id="notificationsDropdown">
-        <div class="notification-item">Jenny accepted your friend invite!</div>
-        <div class="notification-item">Influencer Tory added 3 items to her list 'July please don't melt'</div>
-        <div class="notification-item">Try our blended closet feature and see who has the closest style match to you!</div>
-        <div class="notification-item">Maya just posted a new outfit review</div>
-        <div class="notification-item">Your rental is due back in 3 days</div>
-    </div>
+    <!-- Removed duplicate notificationsDropdown for GitHub Pages compatibility -->
     
     <!-- Friends Closet Screen -->
     <div class="screen" id="friends-closet">
+        <div class="debug-footer">For debugging, screen is: friends-closet</div>
         <div class="friends-grid">
             <h2>Your Friend's Closets</h2>
             <p style="text-align: center; color: #666; margin-bottom: 20px;">See the styles your best friends already love</p>
@@ -298,6 +297,7 @@
     
     <!-- Friend Profile Screen -->
     <div class="screen" id="friend-profile">
+        <div class="debug-footer">For debugging, screen is: friend-profile</div>
         <div class="profile-header">
             <div class="profile-avatar">J</div>
             <h1 class="profile-name">Jenny</h1>
@@ -432,6 +432,7 @@ function toggleHanger(btn, event) {
     
     <!-- Closet Screen -->
     <div class="screen" id="closet">
+        <div class="debug-footer">For debugging, screen is: closet</div>
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
@@ -499,6 +500,7 @@ function toggleHanger(btn, event) {
     
     <!-- Feed Screen -->
     <div class="screen" id="feed">
+        <div class="debug-footer">For debugging, screen is: feed</div>
         <div class="feed-container">
             <button class="create-post-btn">
                 + Create Post
@@ -597,6 +599,7 @@ function toggleHanger(btn, event) {
     
     <!-- Events Screen -->
     <div class="screen" id="events">
+        <div class="debug-footer">For debugging, screen is: events</div>
         <div class="events-container">
             <h2 style="text-align: center; margin-bottom: 20px;">Your Events</h2>
             <div class="event-card" onclick="showListsScreenForEvent('Summer of Fun', ['A', 'M', 'K'])">
@@ -642,6 +645,7 @@ function toggleHanger(btn, event) {
 
     <!-- Lists Screen -->
     <div class="screen" id="lists-screen">
+        <div class="debug-footer">For debugging, screen is: lists-screen</div>
         <div class="lists-screen-header">
             <div class="back-btn" onclick="goBack()">← Back</div>
             <h2 id="listsScreenTitle">Event Products</h2>
@@ -761,6 +765,7 @@ function toggleHanger(btn, event) {
     
     <!-- Product Detail Screen -->
     <div class="screen" id="product-detail">
+        <div class="debug-footer">For debugging, screen is: product-detail</div>
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
@@ -844,24 +849,27 @@ function toggleHanger(btn, event) {
         margin-top: 16px;
     }
     </style>
-<script>
-// Sizing bubble selection logic
-document.addEventListener('DOMContentLoaded', function() {
-    var bubbles = document.querySelectorAll('.sizing-bubble');
-    bubbles.forEach(function(bubble) {
-        bubble.addEventListener('click', function() {
-            bubbles.forEach(function(b) { b.classList.remove('selected'); });
-            bubble.classList.add('selected');
-        });
-    });
-});
-</script>
             </div>
         </div>
     </div>
     
     <!-- Edit Profile Screen -->
     <div class="screen" id="edit-profile">
+        <div class="debug-footer">For debugging, screen is: edit-profile</div>
+    .debug-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f8f8f8;
+        color: #333;
+        font-size: 13px;
+        text-align: center;
+        padding: 6px 0;
+        z-index: 9999;
+        border-top: 1px solid #e0e0e0;
+        pointer-events: none;
+    }
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
@@ -984,5 +992,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="toast" id="toast"></div>
     
     <script src="js/app.js"></script>
+    <!--
+      To deploy on GitHub Pages:
+      1. Push your code to the 'gh-pages' branch, or
+      2. Enable Pages in your repository settings and select the branch to publish.
+      All asset paths are relative for compatibility.
+    -->
 </body>
 </html>
