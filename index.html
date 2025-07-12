@@ -12,14 +12,12 @@
     <!-- Header -->
     <div class="header">
         <div class="header-left">
-            <div class="menu-icon" onclick="toggleMenu()">Browse</div>
-            <div class="logo">nuuly</div>
+            <div class="menu-icon" onclick="toggleMenu()">☰ Browse</div>
         </div>
+        <div class="logo" onclick="goToProfile()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 146.9" svg-inline="" class="c-header__logo" role="presentation" focusable="false" tabindex="-1"><path d="M77.3 17.6c12.8 0 22.5 3.8 29.1 11.5 6.6 7.6 9.8 18.9 9.8 33.7v53.4H76.7v-45c0-14.4-5.9-21.6-17.8-21.6-13 0-19.5 7.4-19.5 22.3v44.4H0V21.8h39.1v23.6c3.3-9.5 8.1-16.5 14.3-21 6.1-4.5 14.1-6.8 23.9-6.8M214.1 21.8h39.6v94.4h-39.6V96.7c-6.5 15.3-18.9 22.9-37.3 22.9-12.6 0-22.2-3.5-28.8-10.6-6.6-7-9.9-17.1-9.9-30.3v-57h39.6V69c0 7.2 1.4 12.5 4.3 15.9 2.8 3.4 7.3 5.1 13.3 5.1 12.6 0 18.9-7.3 18.9-21.8V21.8zM333.3 119.5c-19.5 0-34-4.4-43.5-13.2-9.5-8.8-14.3-20.2-14.3-34.1V21.7h39.6v45.7c0 7.2 1.5 12.5 4.4 15.9 2.9 3.4 7.5 5.1 13.9 5.1s11-1.7 13.9-5.1c2.9-3.4 4.4-8.7 4.4-15.9V21.7h39.6v50.5c0 14-4.8 25.4-14.4 34.1-9.9 8.8-24.3 13.2-43.6 13.2M413.3 0h39.4v116.2h-39.4zM558.2 21.8l-22.8 50.8-21.3-50.8H472l41.3 85.9-21.1 39.2h44.5L600 21.8z"></path></svg></div>
         <div class="header-right">
             <div class="header-icon profile-icon" onclick="goToProfile()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#333"/>
-                </svg>
+                <svg alt="person-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.413 13.7c4.588.74 8.342 3.481 9.58 7.14a.5.5 0 1 1-.947.32c-1.296-3.829-5.76-6.602-10.971-6.66-5.21-.056-9.74 2.619-11.125 6.419a.5.5 0 0 1-.94-.343c1.304-3.578 5.032-6.21 9.546-6.899C8.126 12.631 7.18 10.695 7.18 8.5c0-3.29 2.128-6 4.82-6s4.82 2.71 4.82 6c0 2.21-.96 4.159-2.407 5.2zm1.407-5.2c0-2.784-1.74-5-3.82-5s-3.82 2.216-3.82 5 1.74 5 3.82 5 3.82-2.216 3.82-5z"></path></svg>
             </div>
             <div class="header-icon" onclick="showScreen('feed')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,17 +30,12 @@
                 </svg>
                 <span class="notification-badge">5</span>
             </div>
-            <div class="header-icon" onclick="showScreen('main-menu')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" fill="#333"/>
-                </svg>
-            </div>
         </div>
     </div>
     
     <!-- Notifications Dropdown -->
     <div class="notifications-dropdown" id="notificationsDropdown">
-        <div class="notification-item notification-friend">
+        <div class="notification-item notification-friend" onclick="showFriendProfile('Jenny')">
             <span class="notification-icon">👥</span>
             Jenny accepted your friend invite!
             <span class="notification-dismiss">×</span>
@@ -71,9 +64,8 @@
     <style>
     .notifications-dropdown {
         background: #fff;
-        border-radius: 12px;
+        border-radius: 2px;
         box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-        padding: 12px 0;
         min-width: 320px;
         position: absolute;
         right: 24px;
@@ -137,44 +129,39 @@
     
     <!-- Main Menu Screen / User Profile Screen -->
     <div class="screen active" id="main-menu">
-        <!-- Debug footer -->
-        <div class="debug-footer">For debugging, screen is: main-menu</div>
         <!-- User Profile Section -->
         <div class="profile-header">
             <div class="profile-avatar user-profile-avatar" onclick="goToEditProfile()">
                 <img src="images/muck-ups/rach_profile.png" alt="Rachel" class="profile-image-centered-fixed">
             </div>
-            <h1 class="profile-name">Rachel</h1>
-            <div class="profile-stats">
-                <div class="stat">
-                    <span class="stat-number">6</span>
-                    <span class="stat-label">lists</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">followers</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">27</span>
-                    <span class="stat-label">following</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">events</span>
+            <div class="combined-profile-info">
+                <h1 class="profile-name">Rachel</h1>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">lists</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">27</span>
+                        <span class="stat-label">following</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">events</span>
+                    </div>
                 </div>
             </div>
             <div class="profile-actions">
-                <button class="btn" onclick="goToEditProfile()">Edit Profile</button>
-                <button class="btn share-btn">
+                <button class="btn profile-edit-cta" onclick="goToEditProfile()">Edit Profile</button>
+                <button class="btn profile-share-cta share-btn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.34C15.11 18.55 15.08 18.77 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#333"/>
                     </svg>
                     Share
-                </button>
-                <button class="btn friend-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C12.79 4 11 5.79 11 8C11 10.21 12.79 12 15 12ZM15 6C16.1 6 17 6.9 17 8C17 9.1 16.1 10 15 10C13.9 10 13 9.1 13 8C13 6.9 13.9 6 15 6ZM15 14C12.33 14 7 15.34 7 18V20H23V18C23 15.34 17.67 14 15 14ZM9 18C9.22 17.28 12.31 16 15 16C17.7 16 20.8 17.29 21 18H9ZM9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4ZM9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10ZM9 14C6.33 14 1 15.34 1 18V20H9V18C9 16.45 10.81 15.06 13.15 14.32C11.98 14.09 10.59 14 9 14Z" fill="#333"/>
-                    </svg>
                 </button>
             </div>
         </div>
@@ -182,7 +169,7 @@
         <!-- Lists Section -->
         <div class="lists-section">
             <div class="lists-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-                <h3 style="margin: 0;">Your Followed Lists (2)</h3>
+                <h3 style="margin: 0;">Lists (2)</h3>
                 <div>
                     <span class="create-list">Create List</span>
                     <span class="view-all">View All</span>
@@ -254,10 +241,9 @@
     
     <!-- Friends Closet Screen -->
     <div class="screen" id="friends-closet">
-        <div class="debug-footer">For debugging, screen is: friends-closet</div>
         <div class="friends-grid">
             <h2>Your Friend's Closets</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 20px;">See the styles your best friends already love</p>
+            <p style="text-align: center; color: #6C6C6C; margin-bottom: 20px;">See the styles your best friends already love</p>
             
             <div class="friends-list">
                 <div class="friend-card" onclick="showFriendProfile('Jenny')" style="background-image: url('images/products/747963977-m1c.webp'); background-size: cover; background-position: center;">
@@ -291,42 +277,41 @@
             </div>
             
             <h2>Reviews Make the Nuuly World Go 'Round</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 20px;">Add yours to the ecosystem</p>
+            <p style="text-align: center; color: #6C6C6C; margin-bottom: 20px;">Add yours to the ecosystem</p>
         </div>
     </div>
     
     <!-- Friend Profile Screen -->
     <div class="screen" id="friend-profile">
-        <div class="debug-footer">For debugging, screen is: friend-profile</div>
         <div class="profile-header">
             <div class="profile-avatar">J</div>
-            <h1 class="profile-name">Jenny</h1>
-            <div class="profile-stats">
-                <div class="stat">
-                    <span class="stat-number">6</span>
-                    <span class="stat-label">lists</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">followers</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">27</span>
-                    <span class="stat-label">following</span>
+            <div class="combined-profile-info">
+                <h1 class="profile-name">Jenny</h1>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">lists</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">following</span>
+                    </div>
                 </div>
             </div>
             <div class="profile-actions">
-                <button class="btn">Edit Profile</button>
-                <button class="btn">Share</button>
+                <button class="btn profile-share-cta">Share</button>
                 <button class="btn btn-primary">👤</button>
             </div>
         </div>
         
         <div class="lists-section">
             <div class="lists-header">
-                <h3>Lists (2)</h3>
+                <h3>Lists (3)</h3>
                 <div>
-                    <span class="create-list">Create List</span>
                     <span class="view-all">View All</span>
                 </div>
             </div>
@@ -369,37 +354,35 @@
             </div>
         </div>
         
-        <div style="text-align: center; padding: 20px; color: #666;">
-            <h3>Filter + Sort (2)</h3>
-        </div>
-        
-        <div style="text-align: center; padding: 10px; color: #666;">
-            44 results
-        </div>
+        <div style="text-align: center; padding: 20px; color: #6C6C6C; background-color: #fff; border-radius: 2px;">Filter + Sort (2)</div>
+        <div style="text-align: center; padding: 10px; color: #6C6C6C; margin-bottom: -20px;">2 results</div>
         
         <div class="products-grid">
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/747963950-m1a.webp" alt="Ari Neck Scarf Dress" class="product-img">
                     <button class="add-to-closet hanger-btn" onclick="toggleHanger(this, event)" aria-label="Add to Closet">
-                        <svg class="hanger-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="14" cy="14" r="14" fill="#3E545B"/>
-                            <path d="M14 8c1.1 0 2 .9 2 2h2c0-2.2-1.8-4-4-4s-4 1.8-4 4c0 1.7 1.1 3.1 2.7 3.7l.3.1V16h2v-2.2l-.3-.1C12.1 13.1 11 11.7 11 10c0-1.1.9-2 2-2zm-5 10c0-2.2 3.6-4 5-4s5 1.8 5 4v1H9v-1z" fill="#fff"/>
-                        </svg>
+                        <svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg>
                     </button>
     <style>
     .hanger-btn {
-        background: none;
+        background: #fff;
         border: none;
         padding: 0;
         cursor: pointer;
         outline: none;
     }
+    .hanger-btn svg {
+        fill: #365261;
+    }
     .hanger-icon {
         transition: filter 0.2s;
     }
-    .hanger-toggled .hanger-icon {
-        filter: invert(1);
+    .hanger-toggled.hanger-btn {
+        background-color: #365261;
+    }
+    .hanger-toggled.hanger-btn svg {
+        fill: #fff;
     }
     </style>
 </body>
@@ -419,7 +402,7 @@ function toggleHanger(btn, event) {
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
-                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                     <div class="add-to-box" onclick="addToBox(event)">📦</div>
                 </div>
                 <div class="product-info">
@@ -432,7 +415,6 @@ function toggleHanger(btn, event) {
     
     <!-- Closet Screen -->
     <div class="screen" id="closet">
-        <div class="debug-footer">For debugging, screen is: closet</div>
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
@@ -446,7 +428,7 @@ function toggleHanger(btn, event) {
             <span>⚙️ Filter + Sort (2)</span>
         </div>
         
-        <div style="text-align: center; padding: 10px; color: #666;">
+        <div style="text-align: center; padding: 10px; color: #6C6C6C;">
             44 results
         </div>
         
@@ -454,7 +436,7 @@ function toggleHanger(btn, event) {
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-img">
-                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                     <div class="add-to-box" onclick="addToBox(event)">�</div>
                 </div>
                 <div class="product-info">
@@ -465,7 +447,7 @@ function toggleHanger(btn, event) {
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
-                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                     <div class="add-to-box" onclick="addToBox(event)">�</div>
                 </div>
                 <div class="product-info">
@@ -476,7 +458,7 @@ function toggleHanger(btn, event) {
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/4130652010127_089_b2.webp" alt="Strappy Dress" class="product-img">
-                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                     <div class="add-to-box" onclick="addToBox(event)">�</div>
                 </div>
                 <div class="product-info">
@@ -487,7 +469,7 @@ function toggleHanger(btn, event) {
             <div class="product-card" onclick="showProductDetail()">
                 <div class="product-image">
                     <img src="images/products/4130916210153_066_b2.webp" alt="Polka Dot Dress" class="product-img">
-                    <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                    <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                     <div class="add-to-box" onclick="addToBox(event)">�</div>
                 </div>
                 <div class="product-info">
@@ -500,14 +482,13 @@ function toggleHanger(btn, event) {
     
     <!-- Feed Screen -->
     <div class="screen" id="feed">
-        <div class="debug-footer">For debugging, screen is: feed</div>
         <div class="feed-container">
             <button class="create-post-btn">
                 + Create Post
             </button>
             
             <div class="feed-post">
-                <div class="post-header">
+                <div class="post-header" onclick="showFriendProfile('Jenny')">
                     <div class="post-avatar">J</div>
                     <div class="post-username">@jennynotjenis</div>
                 </div>
@@ -599,7 +580,6 @@ function toggleHanger(btn, event) {
     
     <!-- Events Screen -->
     <div class="screen" id="events">
-        <div class="debug-footer">For debugging, screen is: events</div>
         <div class="events-container">
             <h2 style="text-align: center; margin-bottom: 20px;">Your Events</h2>
             <div class="event-card" onclick="showListsScreenForEvent('Summer of Fun', ['A', 'M', 'K'])">
@@ -645,7 +625,6 @@ function toggleHanger(btn, event) {
 
     <!-- Lists Screen -->
     <div class="screen" id="lists-screen">
-        <div class="debug-footer">For debugging, screen is: lists-screen</div>
         <div class="lists-screen-header">
             <div class="back-btn" onclick="goBack()">← Back</div>
             <h2 id="listsScreenTitle">Event Products</h2>
@@ -694,7 +673,7 @@ function toggleHanger(btn, event) {
                 <div class="product-card" onclick="showProductDetail()">
                     <div class="product-image">
                         <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-img">
-                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
@@ -705,7 +684,7 @@ function toggleHanger(btn, event) {
                 <div class="product-card" onclick="showProductDetail()">
                     <div class="product-image">
                         <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
-                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
@@ -716,7 +695,7 @@ function toggleHanger(btn, event) {
                 <div class="product-card" onclick="showProductDetail()">
                     <div class="product-image">
                         <img src="images/products/4130652010127_089_b2.webp" alt="Strappy Dress" class="product-img">
-                        <div class="add-to-closet" onclick="addToCloset(event)">🧥</div>
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
@@ -725,13 +704,13 @@ function toggleHanger(btn, event) {
                     </div>
                 </div>
             </div>
-            <div id="listsCommentsSection" style="display:none; margin-top: 30px;">
+            <div id="listsCommentsSection" style="display:none;">
                 <h3>Comments</h3>
-                <div class="comments-box" style="border-radius: 12px; border: 1px solid #e0e0e0; background: #fafafa; padding: 18px 12px; margin-bottom: 10px;">
+                <div class="comments-box" style="border-radius: 2px; border: 1px solid #e0e0e0; background: #fafafa; padding: 18px 12px; margin-bottom: 10px;">
                     <div id="listsCommentsFeed">
                         <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
                             <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">J</div>
-                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                            <div class="comment-content" style="background:#fff;border-radius:2px;padding:10px 14px;">
                                 <span style="font-weight:500; color:#333;">Jenny</span>
                                 <span style="margin-left:8px; color:#888; font-size:13px;">@jennynotjenis</span>
                                 <div style="margin-top:4px; color:#444; font-size:15px;">Can't wait for the wedding! <span style="font-size:18px;vertical-align:middle;">🎉</span></div>
@@ -739,7 +718,7 @@ function toggleHanger(btn, event) {
                         </div>
                         <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
                             <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">M</div>
-                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                            <div class="comment-content" style="background:#fff;border-radius:2px;padding:10px 14px;">
                                 <span style="font-weight:500; color:#333;">Maya</span>
                                 <span style="margin-left:8px; color:#888; font-size:13px;">@therealmaya</span>
                                 <div style="margin-top:4px; color:#444; font-size:15px;">The Sheel Sleeveless was running large on me, FYI! <span style="font-size:18px;vertical-align:middle;">👗</span></div>
@@ -747,7 +726,7 @@ function toggleHanger(btn, event) {
                         </div>
                         <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
                             <div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">A</div>
-                            <div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+                            <div class="comment-content" style="background:#fff;border-radius:2px;padding:10px 14px;">
                                 <span style="font-weight:500; color:#333;">Amaya</span>
                                 <span style="margin-left:8px; color:#888; font-size:13px;">@amaya23</span>
                                 <div style="margin-top:4px; color:#444; font-size:15px;">Love the color palette in this list! <span style="font-size:18px;vertical-align:middle;">😍</span></div>
@@ -765,7 +744,6 @@ function toggleHanger(btn, event) {
     
     <!-- Product Detail Screen -->
     <div class="screen" id="product-detail">
-        <div class="debug-footer">For debugging, screen is: product-detail</div>
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
@@ -831,7 +809,7 @@ function toggleHanger(btn, event) {
         background: #3E545B;
         color: #fff;
         border: none;
-        border-radius: 6px;
+        border-radius: 2px;
         padding: 12px 24px;
         font-size: 16px;
         margin-right: 10px;
@@ -855,21 +833,6 @@ function toggleHanger(btn, event) {
     
     <!-- Edit Profile Screen -->
     <div class="screen" id="edit-profile">
-        <div class="debug-footer">For debugging, screen is: edit-profile</div>
-    .debug-footer {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #f8f8f8;
-        color: #333;
-        font-size: 13px;
-        text-align: center;
-        padding: 6px 0;
-        z-index: 9999;
-        border-top: 1px solid #e0e0e0;
-        pointer-events: none;
-    }
         <div class="back-btn" onclick="goBack()">
             ← Back
         </div>
