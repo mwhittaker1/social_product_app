@@ -948,10 +948,11 @@ body {
 }
 
 .product-detail-description {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.2;
     color: #6C6C6C;
     margin-bottom: 30px;
+    font-family: 'Darker Grotesque';
 }
 
 .size-selector {
