@@ -51,6 +51,17 @@ const productData = {
             { avatar: 'N', name: 'Nova', handle: '@novanova99', text: "Loved the color!", emoji: '🌈' }
         ],
         sizing: 2
+    },
+    '747963950-m1a.webp': {
+        name: 'Ari Neck Scarf Dress',
+        brand: 'Boobob',
+        price: { rental: 28, retail: 145 },
+        description: 'An elegant dress with unique neck scarf detail. Perfect for sophisticated occasions with a touch of bohemian flair.',
+        comments: [
+            { avatar: 'S', name: 'Sophia', handle: '@sophia_style', text: "Love the neck detail!", emoji: '😍' },
+            { avatar: 'E', name: 'Emma', handle: '@emma_fashion', text: "Perfect fit and so comfy!", emoji: '✨' }
+        ],
+        sizing: 3
     }
 };
 
@@ -309,24 +320,62 @@ function toggleNotifications() {
 // Function to show product detail
 function showProductDetail(event) {
     let imgSrc = null;
-    if (event && event.target && event.target.tagName === 'IMG') {
-        imgSrc = event.target.src;
-    } else if (event && event.currentTarget && event.currentTarget.querySelector('img')) {
-        imgSrc = event.currentTarget.querySelector('img').src;
+    let productName = '';
+    let productBrand = '';
+    
+    // Get the clicked product card
+    let productCard = null;
+    if (event && event.currentTarget) {
+        productCard = event.currentTarget;
+    } else if (event && event.target) {
+        // Find the closest product card if event target is a child element
+        productCard = event.target.closest('.product-card');
     }
-    // Extract filename
+    
+    if (productCard) {
+        // Get image source from the product card
+        const img = productCard.querySelector('img');
+        if (img) {
+            imgSrc = img.src;
+        }
+        
+        // Get product name and brand from the product card
+        const nameElement = productCard.querySelector('.product-name');
+        const brandElement = productCard.querySelector('.product-brand');
+        if (nameElement) productName = nameElement.textContent.trim();
+        if (brandElement) productBrand = brandElement.textContent.trim();
+    }
+    
+    // Extract filename from image source
     let filename = imgSrc ? imgSrc.split('/').pop() : '4130084320119_011_b2.webp';
     currentProduct = filename;
-    // Update product detail screen
+    
+    // Get product data, fallback to default if not found
     const data = productData[filename] || productData['4130084320119_011_b2.webp'];
+    
+    // Use HTML data if available, otherwise use productData
+    const displayName = productName || data.name;
+    const displayBrand = productBrand || data.brand;
+    
     showScreen('product-detail');
+    
     // Set image
-    document.querySelector('#product-detail .product-detail-img').src = 'images/products/' + filename;
+    const productDetailImg = document.querySelector('#product-detail .product-detail-img');
+    if (productDetailImg) {
+        productDetailImg.src = imgSrc || ('images/products/' + filename);
+    }
+    
     // Set name, brand, price, description
-    document.querySelector('.product-detail-name').textContent = data.name;
-    document.querySelector('.product-detail-brand').textContent = data.brand;
-    document.querySelector('.product-detail-price').textContent = `Rental: ${data.price.rental} | Retail: ${data.price.retail}`;
-    document.querySelector('.product-detail-description').textContent = data.description;
+    const nameEl = document.querySelector('.product-detail-name');
+    const brandEl = document.querySelector('.product-detail-brand');
+    const priceEl = document.querySelector('.product-detail-price');
+    const descEl = document.querySelector('.product-detail-description');
+    
+    if (nameEl) nameEl.textContent = displayName;
+    if (brandEl) brandEl.textContent = displayBrand;
+    if (priceEl) priceEl.textContent = `Rental: ${data.price.rental} | Retail: ${data.price.retail}`;
+    if (descEl) descEl.textContent = data.description;
+    
     // Render comments
     renderProductComments(data.comments);
     // Render star rating
