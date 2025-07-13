@@ -44,9 +44,9 @@
             Jenny accepted your friend invite!
             <span class="notification-dismiss">×</span>
         </div>
-        <div class="notification-item notification-list">
-            <span class="notification-icon">📋</span>
-            Influencer Tory added 3 items to her list 'July please don't melt'
+        <div class="notification-item notification-list" onclick="showListsScreenForEvent('Sai\'s Wedding!', ['A', 'M', 'K'])">
+            <span class="notification-icon">🔔</span>
+            Checkout what's happening with your event: Sai's Wedding
             <span class="notification-dismiss">×</span>
         </div>
         <div class="notification-item notification-feature">
@@ -485,12 +485,12 @@ function toggleHanger(btn, event) {
             </button>
             
             <div class="feed-post">
-                <div class="post-header" onclick="showFriendProfile('Jenny')">
-                    <div class="post-avatar">J</div>
-                    <div class="post-username">@jennynotjenis</div>
+                <div class="post-header" onclick="showFriendProfile('Sophie')">
+                    <div class="post-avatar" style="background-color: #FF6B6B;">S</div>
+                    <div class="post-username">@sophiestyle</div>
                 </div>
                 <div class="post-image-container" onclick="showFullscreen(event)">
-                    <img src="images/products/747963950-m1a.webp" alt="Fashion post" class="post-image">
+                    <img src="images/products/4130318350061_079_b.jpeg" alt="Fashion post" class="post-image">
                 </div>
                 <div class="post-actions">
                     <span class="post-action" onclick="likePost(this)">❤️</span>
@@ -505,10 +505,39 @@ function toggleHanger(btn, event) {
                         <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
                     </div>
                     <div class="post-caption">
-                        Loved this top for my dinner date tonight!
+                        Perfect for brunch with the girls! The fabric is so soft and flowy.
                     </div>
                     <div class="post-fit">
-                        True to size: ───●────
+                        True to size: ──●─────
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-post">
+                <div class="post-header" onclick="showFriendProfile('Maya')">
+                    <div class="post-avatar" style="background-color: #4ECDC4;">M</div>
+                    <div class="post-username">@mayafashion</div>
+                </div>
+                <div class="post-image-container" onclick="showFullscreen(event)">
+                    <img src="images/products/100791029_091_b.jpeg" alt="Fashion post" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-rating">
+                        <span class="star" data-rating="1" onclick="rateItem(this, 1)">☆</span>
+                        <span class="star" data-rating="2" onclick="rateItem(this, 2)">☆</span>
+                        <span class="star" data-rating="3" onclick="rateItem(this, 3)">☆</span>
+                        <span class="star" data-rating="4" onclick="rateItem(this, 4)">☆</span>
+                        <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
+                    </div>
+                    <div class="post-caption">
+                        These jeans are everything! Finally found my perfect denim match 👖
+                    </div>
+                    <div class="post-fit">
+                        True to size: ●────────
                     </div>
                 </div>
             </div>
@@ -516,12 +545,129 @@ function toggleHanger(btn, event) {
             <!-- Product List Montage -->
             <div class="feed-post list-montage">
                 <div class="post-header">
-                    <div class="post-avatar">R</div>
-                    <div class="post-username">@rachel_green</div>
+                    <div class="post-avatar" style="background-color: #45B7D1;">E</div>
+                    <div class="post-username">@emilychic</div>
                 </div>
                 <div class="list-title-header">
-                    <h3>July</h3>
+                    <h3>Summer Essentials</h3>
                     <span>8 items</span>
+                </div>
+                <div class="product-montage">
+                    <div class="montage-item" onclick="showProductDetail(event)">
+                        <img src="images/products/100367275_066_b.jpeg" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail(event)">
+                        <img src="images/products/98785637_072_b.jpeg" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail(event)">
+                        <img src="images/products/100136910_040_b.jpeg" alt="Product">
+                    </div>
+                    <div class="montage-item" onclick="showProductDetail(event)">
+                        <img src="images/products/100051408_036_b.jpeg" alt="Product">
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-caption">
+                        Building my capsule wardrobe! These pieces mix and match perfectly ✨
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-post">
+                <div class="post-header" onclick="showFriendProfile('Zoe')">
+                    <div class="post-avatar" style="background-color: #96CEB4;">Z</div>
+                    <div class="post-username">@zoevibes</div>
+                </div>
+                <div class="post-image-container" onclick="showFullscreen(event)">
+                    <img src="images/products/4112659770070_001_b.jpeg" alt="Fashion post" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-rating">
+                        <span class="star" data-rating="1" onclick="rateItem(this, 1)">☆</span>
+                        <span class="star" data-rating="2" onclick="rateItem(this, 2)">☆</span>
+                        <span class="star" data-rating="3" onclick="rateItem(this, 3)">☆</span>
+                        <span class="star" data-rating="4" onclick="rateItem(this, 4)">☆</span>
+                        <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
+                    </div>
+                    <div class="post-caption">
+                        Love this asymmetrical cut! So unique and pairs with everything ✂️
+                    </div>
+                    <div class="post-fit">
+                        True to size: ───●────
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Suggestion -->
+            <div class="suggestion-header">
+                <h3>Style Match Suggestions</h3>
+            </div>
+            <div class="feed-post user-suggestion">
+                <div class="suggestion-content">
+                    <div class="suggested-user">
+                        <div class="suggested-user-avatar" style="background-color: #F7DC6F;">L</div>
+                        <div class="suggested-user-info">
+                            <div class="suggested-user-name">Luna Martinez</div>
+                            <div class="suggested-user-match">96% style match</div>
+                        </div>
+                        <button class="follow-btn">Follow</button>
+                    </div>
+                    <div class="suggested-user">
+                        <div class="suggested-user-avatar" style="background-color: #BB8FCE;">A</div>
+                        <div class="suggested-user-info">
+                            <div class="suggested-user-name">Aria Chen</div>
+                            <div class="suggested-user-match">94% style match</div>
+                        </div>
+                        <button class="follow-btn">Follow</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-post">
+                <div class="post-header" onclick="showFriendProfile('Chloe')">
+                    <div class="post-avatar" style="background-color: #FF9FF3;">C</div>
+                    <div class="post-username">@chloelooks</div>
+                </div>
+                <div class="post-image-container" onclick="showFullscreen(event)">
+                    <img src="images/products/4130942140006_237_b.jpeg" alt="Fashion post" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-rating">
+                        <span class="star" data-rating="1" onclick="rateItem(this, 1)">☆</span>
+                        <span class="star" data-rating="2" onclick="rateItem(this, 2)">☆</span>
+                        <span class="star" data-rating="3" onclick="rateItem(this, 3)">☆</span>
+                        <span class="star" data-rating="4" onclick="rateItem(this, 4)">☆</span>
+                        <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
+                    </div>
+                    <div class="post-caption">
+                        Perfect office to dinner dress! Love the pleated details 💼✨
+                    </div>
+                    <div class="post-fit">
+                        True to size: ───●────
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-post list-montage">
+                <div class="post-header">
+                    <div class="post-avatar" style="background-color: #F39C12;">N</div>
+                    <div class="post-username">@ninatrends</div>
+                </div>
+                <div class="list-title-header">
+                    <h3>Fall Favorites</h3>
+                    <span>6 items</span>
                 </div>
                 <div class="product-montage">
                     <div class="montage-item" onclick="showProductDetail(event)">
@@ -543,32 +689,36 @@ function toggleHanger(btn, event) {
                 </div>
                 <div class="post-content">
                     <div class="post-caption">
-                        My summer favorites collection! Can't wait to wear these pieces.
+                        Ready for sweater weather! These are my go-to pieces for cozy vibes 🍂
                     </div>
                 </div>
             </div>
             
-            <!-- User Suggestion -->
-            <div class="suggestion-header">
-                <h3>Style Match Suggestions</h3>
-            </div>
-            <div class="feed-post user-suggestion">
-                <div class="suggestion-content">
-                    <div class="suggested-user">
-                        <div class="suggested-user-avatar">T</div>
-                        <div class="suggested-user-info">
-                            <div class="suggested-user-name">Tory Bell</div>
-                            <div class="suggested-user-match">98% style match</div>
-                        </div>
-                        <button class="follow-btn">Follow</button>
+            <div class="feed-post">
+                <div class="post-header" onclick="showFriendProfile('Bella')">
+                    <div class="post-avatar" style="background-color: #E74C3C;">B</div>
+                    <div class="post-username">@bellastyle</div>
+                </div>
+                <div class="post-image-container" onclick="showFullscreen(event)">
+                    <img src="images/products/747963950-m1a.webp" alt="Fashion post" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <span class="post-action" onclick="likePost(this)">❤️</span>
+                    <span class="post-action">💬</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-rating">
+                        <span class="star" data-rating="1" onclick="rateItem(this, 1)">☆</span>
+                        <span class="star" data-rating="2" onclick="rateItem(this, 2)">☆</span>
+                        <span class="star" data-rating="3" onclick="rateItem(this, 3)">☆</span>
+                        <span class="star" data-rating="4" onclick="rateItem(this, 4)">☆</span>
+                        <span class="star" data-rating="5" onclick="rateItem(this, 5)">☆</span>
                     </div>
-                    <div class="suggested-user">
-                        <div class="suggested-user-avatar">A</div>
-                        <div class="suggested-user-info">
-                            <div class="suggested-user-name">Allison Janes</div>
-                            <div class="suggested-user-match">92% style match</div>
-                        </div>
-                        <button class="follow-btn">Follow</button>
+                    <div class="post-caption">
+                        Finally found the perfect scarf dress! Love the neck detail so much 😍
+                    </div>
+                    <div class="post-fit">
+                        True to size: ───●────
                     </div>
                 </div>
             </div>
@@ -579,23 +729,23 @@ function toggleHanger(btn, event) {
     <div class="screen" id="events">
         <div class="events-container">
             <h2 style="text-align: center; margin-bottom: 20px;">Your Events</h2>
-            <div class="event-card" onclick="showListsScreenForEvent('Influancer Novas Summer of Fun', ['A', 'M', 'K'])">
+            <div class="event-card" onclick="showListsScreenForEvent('Influencer Novas Summer of Fun', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/747963950-m1a.webp'); background-size: cover; background-position: center;">
                     <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
-                    <div class="event-title">Influancer Novas Summer of Fun</div>
+                    <div class="event-title">Influencer Novas Summer of Fun</div>
                     <div class="event-description">
                         Want to know what the style set is dreaming about this summer? Check out my curated collection of must-have pieces!
                     </div>
                 </div>
             </div>
-            <div class="event-card" onclick="showListsScreenForEvent('Amys Birthday Bash!', ['A', 'M', 'K'])">
+            <div class="event-card" onclick="showListsScreenForEvent('Amy\'s Birthday Bash!', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/747964005-m4a.webp'); background-size: cover; background-position: center;">
                     <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
-                    <div class="event-title">Amys Birthday Bash!</div>
+                    <div class="event-title">Amy's Birthday Bash!</div>
                     <div class="event-description">
                         Amy is turning 30! Come celebrate with us! Bring something to swim in or lounge by our pool!
                     </div>
@@ -606,12 +756,12 @@ function toggleHanger(btn, event) {
                     </div>
                 </div>
             </div>
-            <div class="event-card" onclick="showListsScreenForEvent('Wedding Season Essentials', ['A', 'M', 'K'])">
+            <div class="event-card" onclick="showListsScreenForEvent('Sai\'s Wedding!', ['A', 'M', 'K'])">
                 <div class="event-image" style="background-image: url('images/products/4130929940110_009_b2.webp'); background-size: cover; background-position: center;">
                     <div class="event-image-overlay"></div>
                 </div>
                 <div class="event-info">
-                    <div class="event-title">Sais wedding!</div>
+                    <div class="event-title">Sai's Wedding!</div>
                     <div class="event-description">
                         Sai is finally tieing the knot on 7/29/25! Check out what are planning to wear for the big day!
                     </div>
@@ -666,38 +816,71 @@ function toggleHanger(btn, event) {
     </style>
         <div class="lists-screen-container">
             <div class="products-grid">
-                <!-- Example products, can be dynamically generated -->
+                <!-- Populated with diverse products from productData -->
                 <div class="product-card" onclick="showProductDetail(event)">
                     <div class="product-image">
-                        <img src="images/products/4130084320119_011_b2.webp" alt="Brooke Halter Top" class="product-img">
+                        <img src="images/products/100051408_036_b.jpeg" alt="Verano Maxi Dress" class="product-img">
                         <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
-                        <div class="product-name">Brooke Halter Top</div>
-                        <div class="product-brand">Free People</div>
+                        <div class="product-name">Verano Maxi Dress</div>
+                        <div class="product-brand">Alexandra Bueno</div>
                     </div>
                 </div>
                 <div class="product-card" onclick="showProductDetail(event)">
                     <div class="product-image">
-                        <img src="images/products/4130646420009_256_b.webp" alt="Barrett Midi Dress" class="product-img">
+                        <img src="images/products/100791029_091_b.jpeg" alt="Ren High-Rise Wide-Leg Raw Hem Jeans" class="product-img">
                         <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
-                        <div class="product-name">Barrett Midi Dress</div>
-                        <div class="product-brand">Ronny Kobo</div>
+                        <div class="product-name">Ren High-Rise Wide-Leg Raw Hem Jeans</div>
+                        <div class="product-brand">AGOLDE</div>
                     </div>
                 </div>
                 <div class="product-card" onclick="showProductDetail(event)">
                     <div class="product-image">
-                        <img src="images/products/4130652010127_089_b2.webp" alt="Strappy Dress" class="product-img">
+                        <img src="images/products/98785637_072_b.jpeg" alt="Poppy Lace Mini Dress" class="product-img">
                         <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
                         <div class="add-to-box" onclick="addToBox(event)">📦</div>
                     </div>
                     <div class="product-info">
-                        <div class="product-name">Strappy Dress</div>
-                        <div class="product-brand">PHX</div>
+                        <div class="product-name">Poppy Lace Mini Dress</div>
+                        <div class="product-brand">For Love & Lemons</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="showProductDetail(event)">
+                    <div class="product-image">
+                        <img src="images/products/4130942140006_237_b.jpeg" alt="The Tobie Button-Front Pleated Mini Shirtdress" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">The Tobie Button-Front Pleated Mini Shirtdress</div>
+                        <div class="product-brand">Exquise</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="showProductDetail(event)">
+                    <div class="product-image">
+                        <img src="images/products/100367275_066_b.jpeg" alt="Jacqui Cowl Maxi Dress" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Jacqui Cowl Maxi Dress</div>
+                        <div class="product-brand">Suboo</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="showProductDetail(event)">
+                    <div class="product-image">
+                        <img src="images/products/100136910_040_b.jpeg" alt="Jumpstart Sleeveless Romper" class="product-img">
+                        <div class="add-to-closet" onclick="addToCloset(event)"><svg alt="hanger icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path fill-rule="evenodd" d="M11.508 10.599V8.182a.5.5 0 0 1 .5-.5c1.151 0 2.074-.982 2.02-2.166-.047-1.051-.9-1.919-1.924-1.967-1.156-.054-2.12.885-2.12 2.065a.5.5 0 0 1-1 0c0-1.746 1.436-3.145 3.166-3.064 1.545.073 2.807 1.357 2.878 2.92.071 1.578-1.038 2.92-2.52 3.17v1.959c5.548.175 10.322 3.26 11.806 7.615.52 1.528-.33 3.305-1.74 3.305H1.441c-1.41 0-2.261-1.777-1.74-3.305 1.483-4.356 6.257-7.44 11.806-7.615zm-10.066 9.92h21.131c.624 0 1.118-1.033.794-1.982-1.38-4.056-6.005-6.946-11.36-6.946-5.354 0-9.978 2.89-11.359 6.946-.323.949.17 1.982.794 1.982z"></path></svg></div>
+                        <div class="add-to-box" onclick="addToBox(event)">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Jumpstart Sleeveless Romper</div>
+                        <div class="product-brand">Daily Practice by Anthropologie</div>
                     </div>
                 </div>
             </div>

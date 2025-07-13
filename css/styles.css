@@ -585,8 +585,9 @@ body {
 }
 
 .product-brand {
-    font-size: 14px;
+    font-size: 18px;
     color: #6C6C6C;
+    font-family: 'Darker-Grotesque', sans-serif;
 }
 
 /* Feed */
@@ -1112,6 +1113,10 @@ body {
 
 .notifications-dropdown.active {
     display: block;
+}
+
+.logo svg:focus {
+    outline: none;
 }
 
 .notification-item {

@@ -62,6 +62,97 @@ const productData = {
             { avatar: 'E', name: 'Emma', handle: '@emma_fashion', text: "Perfect fit and so comfy!", emoji: '✨' }
         ],
         sizing: 3
+    },
+    '100791029_091_b.jpeg': {
+        name: 'Ren High-Rise Wide-Leg Raw Hem Jeans',
+        brand: 'AGOLDE', 
+        price: { rental: 35, retail: 198 },
+        description: 'Premium denim with a relaxed wide-leg fit and raw hem detail. These high-rise jeans offer vintage-inspired style with modern comfort.',
+        comments: [
+            { avatar: 'Z', name: 'Zoe', handle: '@zoevibes', text: "These jeans are everything! So flattering", emoji: '🔥' },
+            { avatar: 'L', name: 'Lily', handle: '@lily_looks', text: "Raw hem is chef's kiss", emoji: '👌' },
+            { avatar: 'C', name: 'Chloe', handle: '@chloelooks', text: "Worth every penny!", emoji: '💯' }
+        ],
+        sizing: 2
+    },
+    '4130318350061_079_b.jpeg': {
+        name: 'Sleeveless Fit & Flare Mini Dress',
+        brand: 'Maeve', 
+        price: { rental: 18, retail: 88 },
+        description: 'The name "Maeve" references a purple flower, a Greek goddess and a famously beautiful Irish warrior queen, all inspirations for this structured, delicate Exclusive to Anthropologie, Maeve designs are refined, flattering and endlessly wearable.',
+        comments: [
+            { avatar: 'A', name: 'Aria', handle: '@aria_chen', text: "Perfect for brunch dates!", emoji: '🥂' },
+            { avatar: 'B', name: 'Bella', handle: '@bellastyle', text: "So cute and comfy", emoji: '💕' }
+        ],
+        sizing: 3
+    },
+    '4112659770070_001_b.jpeg': {
+        name: 'Short-Sleeve Structured Asymmetrical Top',
+        brand: 'Maeve', 
+        price: { rental: 15, retail: 68 },
+        description: 'The name "Maeve" references a purple flower, a Greek goddess and a famously beautiful Irish warrior queen, all inspirations for this structured, delicate Exclusive to Anthropologie, Maeve designs are refined, flattering and endlessly wearable.',
+        comments: [
+            { avatar: 'N', name: 'Nina', handle: '@ninatrends', text: "Love the asymmetrical cut!", emoji: '✂️' },
+            { avatar: 'S', name: 'Sophie', handle: '@sophiestyle', text: "Pairs with everything", emoji: '👗' }
+        ],
+        sizing: 3
+    },
+    '100051408_036_b.jpeg': {
+        name: 'Verano Maxi Dress',
+        brand: 'Alexandra Bueno', 
+        price: { rental: 42, retail: 215 },
+        description: 'Colombian native María Alexandra Bueno Tavera began her eponymous collection in 2014 to honor her South American heritage and the modern female spirit. Made exclusively in Colombia with natural fibers and techniques, Alexandra Bueno\'s designs have daring silhouettes, bold colors and unique textures.',
+        comments: [
+            { avatar: 'M', name: 'Maya', handle: '@mayafashion', text: "Absolutely stunning piece!", emoji: '🌺' },
+            { avatar: 'E', name: 'Emily', handle: '@emilychic', text: "The quality is incredible", emoji: '✨' },
+            { avatar: 'L', name: 'Luna', handle: '@luna_martinez', text: "Perfect for vacation!", emoji: '🌴' }
+        ],
+        sizing: 3
+    },
+    '98785637_072_b.jpeg': {
+        name: 'Poppy Lace Mini Dress',
+        brand: 'For Love & Lemons', 
+        price: { rental: 32, retail: 168 },
+        description: 'Inspired by the sun-soaked days of lemonade stands and founded on the principles of confidence, femininity and individuality, designers Gillian Rose Kern and Laura Hall began LA-based For Love & Lemons in 2011. Look for femme dresses and tops crafted from unexpected prints and fabrics.',
+        comments: [
+            { avatar: 'V', name: 'Violet', handle: '@violet_style', text: "The lace detail is gorgeous!", emoji: '🌸' },
+            { avatar: 'R', name: 'Ruby', handle: '@ruby_red', text: "Felt like a princess", emoji: '👑' }
+        ],
+        sizing: 3
+    },
+    '4130942140006_237_b.jpeg': {
+        name: 'The Tobie Button-Front Pleated Mini Shirtdress',
+        brand: 'Exquise', 
+        price: { rental: 24, retail: 112 },
+        description: 'Exquise is a contemporary womenswear brand that combines modern silhouettes with timeless elegance. Their pieces are designed for the confident woman who appreciates quality craftsmanship and sophisticated style.',
+        comments: [
+            { avatar: 'G', name: 'Grace', handle: '@grace_notes', text: "Perfect office to dinner dress", emoji: '💼' },
+            { avatar: 'H', name: 'Harper', handle: '@harper_h', text: "Love the pleated details!", emoji: '👌' }
+        ],
+        sizing: 3
+    },
+    '100367275_066_b.jpeg': {
+        name: 'Jacqui Cowl Maxi Dress',
+        brand: 'Suboo', 
+        price: { rental: 38, retail: 185 },
+        description: 'Established in 2010, Australian brand SUBOO offers luxurious resortwear collections with breezy vacay vibes. This cowl neck maxi epitomizes effortless elegance with its flowing silhouette and premium fabrication.',
+        comments: [
+            { avatar: 'I', name: 'Isla', handle: '@isla_ocean', text: "Perfect for beach vacation!", emoji: '🏖️' },
+            { avatar: 'K', name: 'Kira', handle: '@kira_k', text: "So flowy and comfortable", emoji: '🌊' },
+            { avatar: 'T', name: 'Tessa', handle: '@tessa_travels', text: "Wore this in Santorini!", emoji: '🇬🇷' }
+        ],
+        sizing: 3
+    },
+    '100136910_040_b.jpeg': {
+        name: 'Jumpstart Sleeveless Romper',
+        brand: 'Daily Practice by Anthropologie', 
+        price: { rental: 12, retail: 58 },
+        description: 'For weekends and workouts, lounging and living, Daily Practice by Anthropologie ensures that ease is always on the agenda. From activewear and fitness essentials to versatile apparel and loungewear, this exclusive collection is designed to do it all - or nothing at all - however your day plays out.',
+        comments: [
+            { avatar: 'F', name: 'Fiona', handle: '@fiona_fit', text: "Great for yoga class!", emoji: '🧘‍♀️' },
+            { avatar: 'P', name: 'Paige', handle: '@paige_active', text: "So comfy for errands", emoji: '🛍️' }
+        ],
+        sizing: 3
     }
 };
 
