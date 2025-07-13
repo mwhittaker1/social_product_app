@@ -1,3 +1,9 @@
+// Global variables
+let currentScreen = 'main-menu';
+let screenHistory = []; // Start with empty history
+let currentList = null;
+let currentProduct = null; // Only declare once
+
 // Store comments for each list
 const listComments = {
     'July': [
@@ -13,9 +19,117 @@ const listComments = {
     ]
 };
 
-let currentList = null;
+// Product data for dynamic product details
+const productData = {
+    '4130084320119_011_b2.webp': {
+        name: 'Brooke Halter Top',
+        brand: 'Free People',
+        price: { rental: 25, retail: 128 },
+        description: 'A gorgeous halter top featuring delicate cutout details and a flowy silhouette. Perfect for summer festivals or date nights. Made from sustainable materials with a comfortable fit that flatters all body types.',
+        comments: [
+            { avatar: 'J', name: 'Jenny', handle: '@jennynotjenis', text: "Loved this for the wedding!", emoji: '💃' },
+            { avatar: 'M', name: 'Maya', handle: '@therealmaya', text: "Fit was perfect!", emoji: '👌' }
+        ],
+        sizing: 3 // 1-5
+    },
+    '4130646420009_256_b.webp': {
+        name: 'Barrett Midi Dress',
+        brand: 'Ronny Kobo',
+        price: { rental: 30, retail: 150 },
+        description: 'A chic midi dress for all occasions. Comfortable and stylish.',
+        comments: [
+            { avatar: 'A', name: 'Amaya', handle: '@amaya23', text: "Runs a bit large!", emoji: '📏' }
+        ],
+        sizing: 4
+    },
+    '4130652010127_089_b2.webp': {
+        name: 'Strappy Dress',
+        brand: 'PHX',
+        price: { rental: 22, retail: 99 },
+        description: 'Strappy and fun, great for summer.',
+        comments: [
+            { avatar: 'N', name: 'Nova', handle: '@novanova99', text: "Loved the color!", emoji: '🌈' }
+        ],
+        sizing: 2
+    }
+};
 
-// Render comments for the current list
+// Function to show a specific screen
+function showScreen(screenId) {
+    // Only add to history if it's a different screen
+    if (screenId !== currentScreen) {
+        screenHistory.push(currentScreen); // Add the current screen before switching
+    }
+    
+    // Hide all screens
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    
+    // Show selected screen
+    const selectedScreen = document.getElementById(screenId);
+    if (selectedScreen) {
+        selectedScreen.classList.add('active');
+        console.log('Showing screen:', screenId); // Debug log
+    } else {
+        console.error('Screen not found:', screenId); // Debug log
+    }
+    
+    // Update current screen
+    currentScreen = screenId;
+    
+    // Scroll to top to ensure proper display
+    window.scrollTo(0, 0);
+    
+    // Close notifications dropdown (with safety check)
+    try {
+        const notificationsDropdown = document.getElementById('notificationsDropdown');
+        if (notificationsDropdown) {
+            notificationsDropdown.classList.remove('active');
+        }
+    } catch (e) {
+        // Ignore dropdown errors
+    }
+}
+
+// Show a specific list page when a list is clicked
+function showListScreen(listName) {
+    showScreen('lists-screen');
+    document.getElementById('listsScreenTitle').textContent = listName + ' List';
+    document.getElementById('listsScreenParticipants').style.display = 'none';
+    document.getElementById('listsCommentsSection').style.display = 'block';
+    currentList = listName;
+    renderListComments(listName);
+}
+
+// Show Lists Screen (general)
+function showListsScreen() {
+    showScreen('lists-screen');
+    document.getElementById('listsScreenTitle').textContent = 'Lists';
+    document.getElementById('listsScreenParticipants').style.display = 'none';
+    document.getElementById('listsCommentsSection').style.display = 'none';
+}
+
+// Show Lists Screen for Event (now shows products and horizontal participants)
+function showListsScreenForEvent(eventName, participants) {
+    showScreen('lists-screen');
+    document.getElementById('listsScreenTitle').textContent = eventName + ' Products';
+    // Show participants horizontally
+    const partDiv = document.getElementById('listsScreenParticipants');
+    partDiv.style.display = 'block';
+    const row = partDiv.querySelector('.participants-row');
+    row.innerHTML = '';
+    participants.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'event-participant';
+        el.textContent = p;
+        row.appendChild(el);
+    });
+    // Show comments section for event
+    document.getElementById('listsCommentsSection').style.display = 'block';
+    // Optionally, update products for event here if dynamic
+}
+
 function renderListComments(listName) {
     const feed = document.getElementById('listsCommentsFeed');
     feed.innerHTML = '';
@@ -80,44 +194,6 @@ function renderListComments(listName) {
     });
 }
 
-// Show a specific list page when a list is clicked
-function showListScreen(listName) {
-    showScreen('lists-screen');
-    document.getElementById('listsScreenTitle').textContent = listName + ' List';
-    document.getElementById('listsScreenParticipants').style.display = 'none';
-    document.getElementById('listsCommentsSection').style.display = 'block';
-    currentList = listName;
-    renderListComments(listName);
-}
-
-// Show Lists Screen (general)
-function showListsScreen() {
-    showScreen('lists-screen');
-    document.getElementById('listsScreenTitle').textContent = 'Lists';
-    document.getElementById('listsScreenParticipants').style.display = 'none';
-    document.getElementById('listsCommentsSection').style.display = 'none';
-}
-
-// Show Lists Screen for Event (now shows products and horizontal participants)
-function showListsScreenForEvent(eventName, participants) {
-    showScreen('lists-screen');
-    document.getElementById('listsScreenTitle').textContent = eventName + ' Products';
-    // Show participants horizontally
-    const partDiv = document.getElementById('listsScreenParticipants');
-    partDiv.style.display = 'block';
-    const row = partDiv.querySelector('.participants-row');
-    row.innerHTML = '';
-    participants.forEach(p => {
-        const el = document.createElement('div');
-        el.className = 'event-participant';
-        el.textContent = p;
-        row.appendChild(el);
-    });
-    // Show comments section for event
-    document.getElementById('listsCommentsSection').style.display = 'block';
-    // Optionally, update products for event here if dynamic
-}
-
 // Star rating for lists
 function rateList(starElem, rating) {
     const stars = starElem.parentElement.querySelectorAll('.star');
@@ -161,41 +237,6 @@ function addListComment() {
         listComments[currentList].push(newComment);
         renderListComments(currentList);
         input.value = '';
-    }
-}
-
-// Global variables
-let currentScreen = 'main-menu';
-let screenHistory = []; // Start with empty history
-
-// Function to show a specific screen
-function showScreen(screenId) {
-    // Only add to history if it's a different screen
-    if (screenId !== currentScreen) {
-        screenHistory.push(currentScreen); // Add the current screen before switching
-    }
-    
-    // Hide all screens
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-    
-    // Show selected screen
-    const selectedScreen = document.getElementById(screenId);
-    if (selectedScreen) {
-        selectedScreen.classList.add('active');
-    }
-    
-    // Update current screen
-    currentScreen = screenId;
-    
-    // Scroll to top to ensure proper display
-    window.scrollTo(0, 0);
-    
-    // Close notifications dropdown
-    const notificationsDropdown = document.getElementById('notificationsDropdown');
-    if (notificationsDropdown) {
-        notificationsDropdown.classList.remove('active');
     }
 }
 
@@ -266,8 +307,32 @@ function toggleNotifications() {
 }
 
 // Function to show product detail
-function showProductDetail() {
+function showProductDetail(event) {
+    let imgSrc = null;
+    if (event && event.target && event.target.tagName === 'IMG') {
+        imgSrc = event.target.src;
+    } else if (event && event.currentTarget && event.currentTarget.querySelector('img')) {
+        imgSrc = event.currentTarget.querySelector('img').src;
+    }
+    // Extract filename
+    let filename = imgSrc ? imgSrc.split('/').pop() : '4130084320119_011_b2.webp';
+    currentProduct = filename;
+    // Update product detail screen
+    const data = productData[filename] || productData['4130084320119_011_b2.webp'];
     showScreen('product-detail');
+    // Set image
+    document.querySelector('#product-detail .product-detail-img').src = 'images/products/' + filename;
+    // Set name, brand, price, description
+    document.querySelector('.product-detail-name').textContent = data.name;
+    document.querySelector('.product-detail-brand').textContent = data.brand;
+    document.querySelector('.product-detail-price').textContent = `Rental: ${data.price.rental} | Retail: ${data.price.retail}`;
+    document.querySelector('.product-detail-description').textContent = data.description;
+    // Render comments
+    renderProductComments(data.comments);
+    // Render star rating
+    renderProductRating(filename);
+    // Render sizing bubbles
+    renderSizingBubbles(data.sizing);
 }
 
 // Function to add item to closet
@@ -379,21 +444,6 @@ function declineInvite() {
     document.getElementById('inviteModal').classList.remove('active');
 }
 
-// Initialize the app
-function initApp() {
-    randomizeProducts();
-    
-    // Close fullscreen overlay when clicking outside the image
-    document.getElementById('fullscreenOverlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeFullscreen();
-        }
-    });
-}
-
-// Run initialization when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initApp);
-
 // Function to randomize product images
 function randomizeProducts() {
     // Array of product images
@@ -455,71 +505,7 @@ function rateItem(element, rating) {
     showToast(`You rated this item ${rating} stars!`);
 }
 
-// --- Dynamic Product Detail Features ---
-const productData = {
-    '4130084320119_011_b2.webp': {
-        name: 'Brooke Halter Top',
-        brand: 'Free People',
-        price: { rental: 25, retail: 128 },
-        description: 'A gorgeous halter top featuring delicate cutout details and a flowy silhouette. Perfect for summer festivals or date nights. Made from sustainable materials with a comfortable fit that flatters all body types.',
-        comments: [
-            { avatar: 'J', name: 'Jenny', handle: '@jennynotjenis', text: "Loved this for the wedding!", emoji: '💃' },
-            { avatar: 'M', name: 'Maya', handle: '@therealmaya', text: "Fit was perfect!", emoji: '👌' }
-        ],
-        sizing: 3 // 1-5
-    },
-    '4130646420009_256_b.webp': {
-        name: 'Barrett Midi Dress',
-        brand: 'Ronny Kobo',
-        price: { rental: 30, retail: 150 },
-        description: 'A chic midi dress for all occasions. Comfortable and stylish.',
-        comments: [
-            { avatar: 'A', name: 'Amaya', handle: '@amaya23', text: "Runs a bit large!", emoji: '📏' }
-        ],
-        sizing: 4
-    },
-    '4130652010127_089_b2.webp': {
-        name: 'Strappy Dress',
-        brand: 'PHX',
-        price: { rental: 22, retail: 99 },
-        description: 'Strappy and fun, great for summer.',
-        comments: [
-            { avatar: 'N', name: 'Nova', handle: '@novanova99', text: "Loved the color!", emoji: '🌈' }
-        ],
-        sizing: 2
-    }
-};
-
-let currentProduct = null;
-
-function showProductDetail(event) {
-    let imgSrc = null;
-    if (event && event.target && event.target.tagName === 'IMG') {
-        imgSrc = event.target.src;
-    } else if (event && event.currentTarget && event.currentTarget.querySelector('img')) {
-        imgSrc = event.currentTarget.querySelector('img').src;
-    }
-    // Extract filename
-    let filename = imgSrc ? imgSrc.split('/').pop() : '4130084320119_011_b2.webp';
-    currentProduct = filename;
-    // Update product detail screen
-    const data = productData[filename] || productData['4130084320119_011_b2.webp'];
-    showScreen('product-detail');
-    // Set image
-    document.querySelector('#product-detail .product-detail-img').src = 'images/products/' + filename;
-    // Set name, brand, price, description
-    document.querySelector('.product-detail-name').textContent = data.name;
-    document.querySelector('.product-detail-brand').textContent = data.brand;
-    document.querySelector('.product-detail-price').textContent = `Rental: ${data.price.rental} | Retail: ${data.price.retail}`;
-    document.querySelector('.product-detail-description').textContent = data.description;
-    // Render comments
-    renderProductComments(data.comments);
-    // Render star rating
-    renderProductRating(filename);
-    // Render sizing bubbles
-    renderSizingBubbles(data.sizing);
-}
-
+// Product detail comment functions
 function renderProductComments(comments) {
     let section = document.getElementById('productCommentsSection');
     if (!section) {
@@ -528,12 +514,12 @@ function renderProductComments(comments) {
         document.querySelector('.product-detail-info').appendChild(section);
     }
     let sectionString = '';
-    sectionString = `<h3>Comments <button onclick=\"filterFriendsComments()\" style=\"margin-left:10px;background: transparent;border: 0px;font-size: 16px;color: #6C6C6C;\">See My Friends' Comments</button></h3><div class="product-comments-feed">`;
+    sectionString = `<h3>Comments <button onclick="filterFriendsComments()" style="margin-left:10px;background: transparent;border: 0px;font-size: 16px;color: #6C6C6C;">See My Friends' Comments</button></h3><div class="product-comments-feed">`;
     comments.forEach(c => {
-        sectionString += `<div class=\"comment-item\" style=\"display:flex;align-items:flex-start;margin-bottom:12px;margin-top: 10px;\"><div class=\"comment-avatar\" style=\"width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;\">${c.avatar}</div><div class=\"comment-content\" style=\"background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);\"><span style=\"font-weight:500;color:#333;\">${c.name}</span><span style=\"margin-left:8px;color:#888;font-size:13px;\">${c.handle}</span><div style=\"margin-top:4px;color:#444;font-size:15px;\">${c.text} <span style=\"font-size:18px;vertical-align:middle;\">${c.emoji}</span></div></div></div>`;
+        sectionString += `<div class="comment-item" style="display:flex;align-items:flex-start;margin-bottom:12px;margin-top: 10px;"><div class="comment-avatar" style="width:32px;height:32px;background:#e6e6e6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-right:10px;">${c.avatar}</div><div class="comment-content" style="background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);"><span style="font-weight:500;color:#333;">${c.name}</span><span style="margin-left:8px;color:#888;font-size:13px;">${c.handle}</span><div style="margin-top:4px;color:#444;font-size:15px;">${c.text} <span style="font-size:18px;vertical-align:middle;">${c.emoji}</span></div></div></div>`;
     });
     // Add comment box
-    sectionString += `</div><div style=\"display:flex;align-items:center;gap:8px;margin-top:10px;\"><input type=\"text\" id=\"addProductCommentInput\" class=\"comment-input\" placeholder=\"Add a comment...\" style=\"flex:1;\"><button class=\"btn\" onclick=\"addProductComment()\">Post</button></div>`;
+    sectionString += `</div><div style="display:flex;align-items:center;gap:8px;margin-top:10px;"><input type="text" id="addProductCommentInput" class="comment-input" placeholder="Add a comment..." style="flex:1;"><button class="btn" onclick="addProductComment()">Post</button></div>`;
     section.innerHTML = sectionString;
 }
 
@@ -575,7 +561,7 @@ function renderProductRating(filename) {
         ratingSection.id = 'productRatingSection';
         document.querySelector('.product-detail-info').appendChild(ratingSection);
     }
-    ratingSection.innerHTML = `<h3>Rate This Product</h3><div class=\"product-rating\">${[1,2,3,4,5].map(i => `<span class=\"star\" onclick=\"rateProduct('${filename}',${i})\">☆</span>`).join('')}</div>`;
+    ratingSection.innerHTML = `<h3>Rate This Product</h3><div class="product-rating">${[1,2,3,4,5].map(i => `<span class="star" onclick="rateProduct('${filename}',${i})">☆</span>`).join('')}</div>`;
 }
 
 function rateProduct(filename, rating) {
@@ -596,7 +582,7 @@ function renderSizingBubbles(selected) {
         document.querySelector('.product-detail-info').appendChild(sizingSection);
     }
     const labels = ['Runs Very Small', 'Runs Small', 'True to Size', 'Runs Large', 'Runs Very Large'];
-    sizingSection.innerHTML = `<h3>Sizing</h3><div class=\"sizing-bubbles\">${labels.map((label, i) => `<span class=\"sizing-bubble${selected===i+1?' selected':''}\" onclick=\"selectSizing(${i+1})\">${label}</span>`).join('')}</div>`;
+    sizingSection.innerHTML = `<h3>Sizing</h3><div class="sizing-bubbles">${labels.map((label, i) => `<span class="sizing-bubble${selected===i+1?' selected':''}" onclick="selectSizing(${i+1})">${label}</span>`).join('')}</div>`;
 }
 
 function selectSizing(val) {
@@ -606,3 +592,18 @@ function selectSizing(val) {
         showToast(`You selected: ${['Runs Very Small','Runs Small','True to Size','Runs Large','Runs Very Large'][val-1]}`);
     }
 }
+
+// Initialize the app
+function initApp() {
+    randomizeProducts();
+    
+    // Close fullscreen overlay when clicking outside the image
+    document.getElementById('fullscreenOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeFullscreen();
+        }
+    });
+}
+
+// Run initialization when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initApp);
