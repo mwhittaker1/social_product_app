@@ -82,18 +82,17 @@ function renderListComments(listName) {
 
 // Show a specific list page when a list is clicked
 function showListScreen(listName) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('lists-screen').classList.add('active');
+    showScreen('lists-screen');
     document.getElementById('listsScreenTitle').textContent = listName + ' List';
     document.getElementById('listsScreenParticipants').style.display = 'none';
     document.getElementById('listsCommentsSection').style.display = 'block';
     currentList = listName;
     renderListComments(listName);
 }
+
 // Show Lists Screen (general)
 function showListsScreen() {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('lists-screen').classList.add('active');
+    showScreen('lists-screen');
     document.getElementById('listsScreenTitle').textContent = 'Lists';
     document.getElementById('listsScreenParticipants').style.display = 'none';
     document.getElementById('listsCommentsSection').style.display = 'none';
@@ -101,8 +100,7 @@ function showListsScreen() {
 
 // Show Lists Screen for Event (now shows products and horizontal participants)
 function showListsScreenForEvent(eventName, participants) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('lists-screen').classList.add('active');
+    showScreen('lists-screen');
     document.getElementById('listsScreenTitle').textContent = eventName + ' Products';
     // Show participants horizontally
     const partDiv = document.getElementById('listsScreenParticipants');
@@ -139,7 +137,6 @@ function toggleFollowList(flagElem, listName) {
     }
 }
 
-// Add comment to lists comment feed
 // Add comment to lists comment feed with user profile/avatar, unique per list
 function addListComment() {
     const input = document.getElementById('addListCommentInput');
@@ -167,27 +164,17 @@ function addListComment() {
     }
 }
 
-// Fix back button in lists screen
-function goBack() {
-    document.getElementById('lists-screen').classList.remove('active');
-    document.getElementById('main-menu').classList.add('active');
-}
-
-// Show toast notification
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.style.display = 'block';
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 2000);
-}
 // Global variables
 let currentScreen = 'main-menu';
-let screenHistory = ['main-menu'];
+let screenHistory = []; // Start with empty history
 
 // Function to show a specific screen
 function showScreen(screenId) {
+    // Only add to history if it's a different screen
+    if (screenId !== currentScreen) {
+        screenHistory.push(currentScreen); // Add the current screen before switching
+    }
+    
     // Hide all screens
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
@@ -195,27 +182,51 @@ function showScreen(screenId) {
     
     // Show selected screen
     const selectedScreen = document.getElementById(screenId);
-    selectedScreen.classList.add('active');
+    if (selectedScreen) {
+        selectedScreen.classList.add('active');
+    }
+    
+    // Update current screen
+    currentScreen = screenId;
     
     // Scroll to top to ensure proper display
     window.scrollTo(0, 0);
     
-    // Update history
-    if (screenId !== currentScreen) {
-        screenHistory.push(screenId);
-        currentScreen = screenId;
-    }
-    
     // Close notifications dropdown
-    document.getElementById('notificationsDropdown').classList.remove('active');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    if (notificationsDropdown) {
+        notificationsDropdown.classList.remove('active');
+    }
 }
 
 // Function to navigate back
 function goBack() {
-    if (screenHistory.length > 1) {
-        screenHistory.pop();
-        const previousScreen = screenHistory[screenHistory.length - 1];
-        showScreen(previousScreen);
+    if (screenHistory.length > 0) {
+        // Get the last screen from history
+        const previousScreen = screenHistory.pop();
+        
+        // Hide all screens
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+        
+        // Show previous screen
+        const selectedScreen = document.getElementById(previousScreen);
+        if (selectedScreen) {
+            selectedScreen.classList.add('active');
+        }
+        
+        // Update current screen without adding to history
+        currentScreen = previousScreen;
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+        
+        // Close notifications dropdown
+        const notificationsDropdown = document.getElementById('notificationsDropdown');
+        if (notificationsDropdown) {
+            notificationsDropdown.classList.remove('active');
+        }
     }
 }
 
@@ -493,14 +504,13 @@ function showProductDetail(event) {
     currentProduct = filename;
     // Update product detail screen
     const data = productData[filename] || productData['4130084320119_011_b2.webp'];
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('product-detail').classList.add('active');
+    showScreen('product-detail');
     // Set image
     document.querySelector('#product-detail .product-detail-img').src = 'images/products/' + filename;
     // Set name, brand, price, description
     document.querySelector('.product-detail-name').textContent = data.name;
     document.querySelector('.product-detail-brand').textContent = data.brand;
-    document.querySelector('.product-detail-price').textContent = `Rental: $${data.price.rental} | Retail: $${data.price.retail}`;
+    document.querySelector('.product-detail-price').textContent = `Rental: ${data.price.rental} | Retail: ${data.price.retail}`;
     document.querySelector('.product-detail-description').textContent = data.description;
     // Render comments
     renderProductComments(data.comments);
