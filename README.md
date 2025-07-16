@@ -1,6 +1,6 @@
-# Nuuly - Social Fashion Rental
+# Products and Social Media Combined!
 
-A mobile-first web application for Nuuly, a social fashion rental platform where users can discover, share, and rent clothing items from friends and influencers.
+A mobile-first web application for an example retail product, a social fashion rental platform where users can discover, share, and rent clothing items from friends and influencers.
 
 ## Screens and Navigation
 
