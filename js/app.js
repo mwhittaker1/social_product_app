@@ -404,12 +404,12 @@ function showFriendProfile(friendName) {
         listsGrid.innerHTML = '';
         const friendLists = [
             {
-                title: 'My Favs',
+                title: 'July',
                 count: 8,
                 images: [
                     'images/Shoe_social_products/bow_flat_2.jpg',
-                    'images/Shoe_social_products/bow_flat_1.jpg',
-                    'images/Shoe_social_products/bohem_sandle_1.jpg'
+                    'images/Shoe_social_products/blue_boots_1.jpg',
+                    'images/Shoe_social_products/bow_flat_1.jpg'
                 ]
             },
             {
