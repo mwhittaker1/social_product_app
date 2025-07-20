@@ -391,9 +391,54 @@ function saveProfile() {
 
 // Function to show friend profile
 function showFriendProfile(friendName) {
-    // In a real app, we would load the friend's data here
-    // For now, we'll just navigate to the friend profile screen
     showScreen('friend-profile');
+    // Set friend name in profile header
+    const nameEl = document.querySelector('#friend-profile .profile-name');
+    if (nameEl) nameEl.textContent = friendName;
+    // Set avatar initial
+    const avatarEl = document.querySelector('#friend-profile .profile-avatar');
+    if (avatarEl) avatarEl.textContent = friendName[0];
+    // Render lists
+    const listsGrid = document.querySelector('#friend-profile .lists-grid');
+    if (listsGrid) {
+        listsGrid.innerHTML = '';
+        const friendLists = [
+            {
+                title: 'My Favs',
+                count: 8,
+                images: [
+                    'images/Shoe_social_products/bow_flat_2.jpg',
+                    'images/Shoe_social_products/bow_flat_1.jpg',
+                    'images/Shoe_social_products/bohem_sandle_1.jpg'
+                ]
+            },
+            {
+                title: 'Beach Days',
+                count: 4,
+                images: [
+                    'images/Shoe_social_products/leather_sandle_1.jpg',
+                    'images/Shoe_social_products/leather_sandle_2.jpg',
+                    'images/Shoe_social_products/cas_for_boot_1.jpg'
+                ]
+            }
+        ];
+        friendLists.forEach(list => {
+            const card = document.createElement('div');
+            card.className = 'list-card';
+            card.onclick = function() { showListScreen(list.title); };
+            card.style.cursor = 'pointer';
+            card.innerHTML = `
+                <div class="list-preview">
+                    ${list.images.map(img => `<div class='list-preview-item'><img src='${img}' alt='Product'></div>`).join('')}
+                </div>
+                <div class="list-info">
+                    <div class="list-title">${list.title}</div>
+                    <div class="list-count">${list.count} items</div>
+                </div>
+            `;
+            listsGrid.appendChild(card);
+        });
+    }
 }
 
 // Function to toggle menu

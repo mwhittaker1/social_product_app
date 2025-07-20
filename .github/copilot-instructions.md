@@ -1,8 +1,8 @@
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
-# Nuuly Social Fashion Rental App
+# Shoe Social, The Social Fashion Rental App
 
-This is a mobile-first web application for Nuuly, a social fashion rental platform. The application allows users to discover, share, and rent clothing items from friends and influencers.
+This is a mobile-first web application for Shoe Social, a social fashion rental platform. The application allows users to discover, share, and rent clothing items from friends and influencers.
 
 ## Project Structure
 
