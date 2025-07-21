@@ -572,11 +572,11 @@ function showFullscreen(event) {
     } else {
         // Default image if no source found
         const randomProductImages = [
-            'images/products/4130084320119_011_b2.webp',
+            'images/images/Shoe_social_products/bow_flat_1.jpg/4130084320119_011_b2.webp',
             'images/products/4130646420009_256_b.webp',
-            'images/products/4130652010127_089_b2.webp',
-            'images/products/747963950-m1a.webp',
-            'images/products/747964005-m4a.webp'
+            'images/images/Shoe_social_products/lace_boot_3.jpg/4130652010127_089_b2.webp',
+            'images/images/Shoe_social_products/model_flat_2.jpg/747963950-m1a.webp',
+            'images/images/Shoe_social_products/beach_shoe_1.jpg/747964005-m4a.webp'
         ];
         imgSrc = randomProductImages[Math.floor(Math.random() * randomProductImages.length)];
     }
